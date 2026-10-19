@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pip's Midnight Nursery — Project Documentation & Submission</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    @page {
+      size: A4;
+      margin: 15mm 16mm;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #3b2d38;
+      background: #ffffff;
+      line-height: 1.55;
+      font-size: 10pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    
+    /* Cover / Header Banner */
+    .header-banner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #fff5eb 0%, #fae8ee 100%);
+      border: 1.5px solid #f0d5df;
+      border-radius: 12px;
+      margin-bottom: 18px;
+    }
+    .header-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #ffffff;
+      padding: 4px;
+      box-shadow: 0 4px 12px rgba(163, 64, 99, 0.15);
+      flex-shrink: 0;
+    }
+    .header-text h1 {
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 18pt;
+      color: #a34063;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .header-text .tagline {
+      font-style: italic;
+      color: #7d5063;
+      font-size: 10.5pt;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      font-size: 8pt;
+      font-weight: 700;
+      background: #ffffff;
+      color: #a34063;
+      border: 1px solid #ecc9d6;
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    /* Links Bar */
+    .links-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .link-card {
+      background: #fbf9f6;
+      border: 1px solid #ebdcd5;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .link-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #926b5d;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .link-val {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #a34063;
+      word-break: break-all;
+      text-decoration: none;
+    }
+
+    /* Headings */
+    h2 {
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 13.5pt;
+      color: #a34063;
+      border-bottom: 2px solid #f6dfe7;
+      padding-bottom: 4px;
+      margin-top: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 11pt;
+      color: #5c3848;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+    
+    p {
+      margin-bottom: 8px;
+    }
+
+    /* Callout & Quotes */
+    .quote-box {
+      background: #fdfaf6;
+      border-left: 3.5px solid #a34063;
+      padding: 8px 12px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 10px;
+      font-size: 9.5pt;
+    }
+    .char-badge {
+      display: inline-block;
+      font-size: 7.5pt;
+      background: #eee4eb;
+      color: #643950;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Numbered Step List */
+    ol.detailed-list {
+      margin-left: 18px;
+      margin-bottom: 10px;
+    }
+    ol.detailed-list li {
+      margin-bottom: 6px;
+      padding-left: 4px;
+    }
+    ol.detailed-list li strong {
+      color: #5c3848;
+    }
+
+    ul.bullet-list {
+      margin-left: 18px;
+      margin-bottom: 10px;
+    }
+    ul.bullet-list li {
+      margin-bottom: 4px;
+    }
+
+    /* Code Blocks */
+    pre, code {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    pre {
+      background: #2b2230;
+      color: #f7ebf2;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 8pt;
+      line-height: 1.45;
+      margin-bottom: 10px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    code.inline-code {
+      background: #f4eaee;
+      color: #8c2e52;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 8.5pt;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .project-card-box {
+      border: 1px solid #e8dbdf;
+      background: #faf7f8;
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+    .project-card-box h4 {
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 9.5pt;
+      color: #a34063;
+      margin-bottom: 3px;
+    }
+    .project-card-box p {
+      font-size: 8.5pt;
+      margin: 0;
+      color: #4b3d45;
+    }
+
+    /* Print Break Utilities */
+    .page-break {
+      page-break-before: always;
+    }
+    .avoid-break {
+      page-break-inside: avoid;
+    }
+
+    .footer-bar {
+      margin-top: 16px;
+      padding-top: 8px;
+      border-top: 1px dashed #d9c4cd;
+      font-size: 8pt;
+      color: #876d78;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover / Header Banner -->
+  <div class="header-banner">
+    <img src="assets/pip_avatar_cloud.png" alt="Pip Avatar" class="header-avatar" />
+    <div class="header-text">
+      <h1>🌙 Pip's Midnight Nursery</h1>
+      <div class="tagline">“I build the dreams you fall asleep inside.”</div>
+      <div class="meta-pills">
+        <span class="pill">Track 1: Baby's First Website</span>
+        <span class="pill">100% Pure Vanilla Web</span>
+        <span class="pill">Real-time Web Audio API</span>
+        <span class="pill">Zero Dependencies</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links Bar -->
+  <div class="links-bar">
+    <div class="link-card">
+      <span class="link-label">Live Sanctuary</span>
+      <span class="link-val">amansingh123119.github.io/babys-first-website/</span>
+    </div>
+    <div class="link-card">
+      <span class="link-label">Public Repository</span>
+      <span class="link-val">github.com/amanSingh123119/babys-first-website</span>
+    </div>
+    <div class="link-card">
+      <span class="link-label">Bedtime Cinema Movie</span>
+      <span class="link-val">.../babys-first-website/story.html</span>
+    </div>
+  </div>
+
+  <!-- Section 02 -->
+  <div class="avoid-break">
+    <h2>🏆 Official Hackathon Submission: Section 02</h2>
+    
+    <h3>Project Title <span class="char-badge">57 / 120 chars</span></h3>
+    <pre>Pip's Midnight Nursery — The Cozy Bedtime Dream Sanctuary</pre>
+
+    <h3>One-Paragraph Pitch <span class="char-badge">486 / 500 chars</span></h3>
+    <div class="quote-box">
+      Pip's Midnight Nursery is a cozy, interactive web sanctuary hosted by Pip, an adorable chibi skull baby Junior Dream Engineer who crafts dreams for little creatures sleeping in the clouds. Built for dreamers, parents, and fans of cozy indie web craft, it revives the heartwarming soul of the personal web with zero dependencies—combining generative Web Audio lullabies, starry canvas physics, interactive dream toys, and a full bedtime cinema movie to ensure no one falls asleep scared.
+    </div>
+  </div>
+
+  <div class="avoid-break">
+    <h3>What You Built <span class="char-badge">2,620 / 6000 chars</span></h3>
+    <p>Pip's Midnight Nursery is an immersive, accessible, and whimsical web experience where visitors step into the sky sanctuary of Pip—a lovable chibi skull baby working as a Junior Dream Engineer high above the city.</p>
+    
+    <ol class="detailed-list">
+      <li><strong>Dynamic Sky Atmosphere:</strong> Seamless Day Palette (cream, pastel berry, butter yellow) and starlit Night Palette (velvet navy, amber moonshine). Toggling the theme dynamically adapts Pip's speech bubble, lighting, and visual aura.</li>
+      <li><strong>The Lullaby Lab:</strong> Interactive vintage music box synthesizing soothing pentatonic bedtime lullabies in real time using mathematical oscillators in the Web Audio API (zero audio files!). Features volume control and floating musical note particles.</li>
+      <li><strong>The Nightlight Collection:</strong> 4 custom dream lanterns (Honey Constellation, Lavender Slumber, Mint Stardust, Berry Sunset) dynamically styled via CSS filter matrix transforms with inspection modals.</li>
+      <li><strong>Dream Delivery Routes:</strong> Animated SVG rooftop skyline illustrating Pip's nightly flight path with an interactive dispatch trigger, live counter, and twinkling waypoint beacons.</li>
+      <li><strong>Interactive Toy Workbench:</strong> Tactile sandbox featuring Pip's celestial star rattle with realistic shaker audio physics, and three stackable wooden blocks with resonant wooden thunk sound effects.</li>
+      <li><strong>Nursery Milestones Growth Chart:</strong> Wall ruler tracking Pip from 12-inch Cloud Fluffing 101 to 36-inch certified Rooftop Carrier.</li>
+      <li><strong>Fullscreen Bedtime Story Cinema:</strong> Dedicated story movie mode (<code class="inline-code">story.html</code>) with scroll-driven awakening animations, custom lullaby audio, shooting stars, and emotional chapters culminating in Pip's mission.</li>
+      <li><strong>Community Starlight Guestbook:</strong> Persistent wall powered by <code class="inline-code">localStorage</code> with custom nicknames, bedtime wishes, emoji sticker badges, and starlight confetti.</li>
+      <li><strong>Nostalgic Web Details:</strong> Vintage 6-digit mechanical tumbler odometer with an interactive <code class="inline-code">[+1 Click]</code> test button, classic 88x31 badges, and 60 FPS canvas stardust cursor trail.</li>
+    </ol>
+  </div>
+
+  <div class="avoid-break page-break">
+    <h3>Tools & Technologies <span class="char-badge">990 / 1000 chars</span></h3>
+    <pre>• HTML5: Semantic, accessible document outline (WAI-ARIA, single h1, landmark regions).
+• Vanilla CSS3: Custom CSS design tokens (Day/Night modes), Flexbox/Grid layouts, mix-blend-mode for cream texture blending, CSS keyframe animations, and @media (prefers-reduced-motion) compliance.
+• Vanilla JavaScript (ES6+): Modular state architecture, zero build steps, 0 npm dependencies.
+• Native Web Audio API: Mathematical synthesis of pentatonic music box notes, rattle noise buffers, wooden block resonant thunks, and sparkle chimes using OscillatorNode, BiquadFilterNode, and GainNode envelopes—strictly initialized on user gesture.
+• HTML5 Canvas 2D API: 60 FPS pointer sparkle trail physics and celestial confetti particle simulation.
+• SVG & Vector Graphics: Custom rooftop skyline, dashed path animations, and waypoint markers.
+• Web APIs: LocalStorage API (guestbook & odometer persistence), Intersection Observer API (scroll-triggered chapter reveals).
+• Google Fonts: Fredoka & Nunito.</pre>
+  </div>
+
+  <!-- Section 04 -->
+  <div class="avoid-break">
+    <h2>📖 Official Hackathon Submission: Section 04</h2>
+
+    <h3>Your Approach to the Challenge <span class="char-badge">1,671 / 4000 chars</span></h3>
+    <div class="quote-box">
+      Our approach was rooted in the theme of the hackathon—celebrating the wonder, warmth, and unhurried charm of <strong>Baby's First Website</strong> while executing with modern frontend engineering standards.<br><br>
+      <strong>1. Soul of the Early Web Reimagined:</strong> We honored classic personal web craft—retro visitor counters, guestbooks, personal homepages, and 88x31 badges—reimagining them with tactile modern mechanics: a 3D mechanical tumbler odometer and a native Web Audio generative soundbox.<br>
+      <strong>2. A Character-Driven Narrative:</strong> We built a cohesive universe around Pip, the chibi skull baby Junior Dream Engineer. Every interaction—from cloud fluffing to rooftop flights—serves Pip's mission: ensuring no creature falls asleep scared.<br>
+      <strong>3. Pure Craft & Zero-Dependency Philosophy:</strong> Zero npm packages, zero external audio assets, and zero build toolchains. Every chime, rattle, block thunk, and lullaby note is synthesized in real time via code.<br>
+      <strong>4. Accessibility & Polish:</strong> Buttery 60 FPS performance, touch ergonomics (&gt;=44px touch targets), keyboard navigation (<code class="inline-code">:focus-visible</code>), ARIA semantics, and full <code class="inline-code">prefers-reduced-motion</code> respect.
+    </div>
+  </div>
+
+  <div class="avoid-break">
+    <h3>Key Features Checklist for Judges <span class="char-badge">1,899 / 4000 chars</span></h3>
+    <div class="project-grid">
+      <div class="project-card-box">
+        <h4>1. Day / Night Atmosphere Shift</h4>
+        <p>Toggle 🌙/☀️ in top bar. Changes entire palette, Pip's speech bubble, and lighting.</p>
+      </div>
+      <div class="project-card-box">
+        <h4>2. The Lullaby Lab</h4>
+        <p>Click 'Play Lullaby' for live mathematical pentatonic chimes with volume slider.</p>
+      </div>
+      <div class="project-card-box">
+        <h4>3. Nightlight Collection</h4>
+        <p>Inspect 4 glowing lanterns via CSS filter matrix transforms and modal views.</p>
+      </div>
+      <div class="project-card-box">
+        <h4>4. Dream Delivery Routes</h4>
+        <p>Click 'Deliver a Dream!' to launch Pip across animated SVG rooftops.</p>
+      </div>
+      <div class="project-card-box">
+        <h4>5. Interactive Toys</h4>
+        <p>Shake the Starlight Rattle & stack/unstack 3 wooden blocks with custom audio.</p>
+      </div>
+      <div class="project-card-box">
+        <h4>6. Nursery Wall Growth Chart</h4>
+        <p>Interactive ruler notches tracking height from 12″ to 36″ current.</p>
+      </div>
+      <div class="project-card-box">
+        <h4>7. Fullscreen Story Cinema</h4>
+        <p>Visit <code class="inline-code">story.html</code> for waking animations, star trails, and narrative chapters.</p>
+      </div>
+      <div class="project-card-box">
+        <h4>8. Starlight Guestbook</h4>
+        <p>Sign with nickname, bedtime wish, and sticker badge with confetti showers.</p>
+      </div>
+    </div>
+    
+    <div class="quote-box" style="border-left-color: #ffd166; background: #fffcf0;">
+      <strong>🎁 3 Secret Easter Eggs to Try:</strong><br>
+      • Fast-click crescent moon 🌙 in the top logo 5 times for Pip's Moon Serenade.<br>
+      • Double-click Pip's cloud avatar in the hero section for a cute giggle & confetti.<br>
+      • Type <code>d-r-e-a-m</code> anywhere on your keyboard to unlock the VIP dream crate!
+    </div>
+  </div>
+
+  <div class="avoid-break page-break">
+    <h3>Challenges & Learnings <span class="char-badge">1,561 / 4000 chars</span></h3>
+    <ul class="bullet-list">
+      <li><strong>Synthesizing Sound from Scratch:</strong> Generating soothing, non-harsh musical notes required combining sine wave oscillators with subtle harmonic overtones and custom white noise buffers for the rattle. Adhered to strict autoplay policies by unlocking <code class="inline-code">AudioContext</code> strictly upon the user's first gesture.</li>
+      <li><strong>Canvas Sparkle & Stardust Engine at 60 FPS:</strong> Optimized particle recycling pool and <code class="inline-code">requestAnimationFrame</code> loop, with automatic cleanup and suppression under <code class="inline-code">prefers-reduced-motion</code>.</li>
+      <li><strong>Seamless Palette Theming with Baked Assets:</strong> Day Mode uses <code class="inline-code">mix-blend-mode: multiply</code> on cream textures, while Night Mode transitions to illuminated starlight frames with glowing drop-shadows.</li>
+      <li><strong>Pure Vanilla Architecture:</strong> Orchestrated state across sound, modals, local storage, guestbook entries, and Easter eggs without frameworks.</li>
+    </ul>
+
+    <h3>AI Tools & Outside Help <span class="char-badge">689 / 2000 chars</span></h3>
+    <pre>• Antigravity / Gemini AI: Pair-programming assistant for brainstorming features, drafting initial code structures, debugging CSS layout edge cases, and refining copy.
+• Visual Asset Generation: Used AI image generation tools to create base character illustrations of Pip, the lullaby music box, and dream lantern, curated and color-balanced with CSS blend modes.
+• Code & Architecture: All HTML5, CSS3, JavaScript logic, Web Audio oscillator synthesis, canvas particle engines, and SVG animations were custom-written specifically for this hackathon project.</pre>
+
+    <h3>Anything Else for the Judges? <span class="char-badge">674 / 4000 chars</span></h3>
+    <div class="quote-box">
+      • <strong>Audio Experience:</strong> Please turn your device volume UP and unmuted! The real-time Web Audio lullabies, rattle shakers, and Easter egg chimes are central to the experience.<br>
+      • <strong>Zero Build / Immediate Setup:</strong> No npm install, no build step, no server configuration required. Simply open <code class="inline-code">index.html</code> in any browser.<br>
+      • <strong>Responsive:</strong> Fully responsive and touch-optimized across smartphones, tablets, laptops, and ultra-wide displays.
+    </div>
+
+    <div class="footer-bar">
+      <span>© 2026 Pip's Midnight Nursery • Baby's First Website Hackathon (Track 1)</span>
+      <span>Documentation & Submission Dossier</span>
+    </div>
+  </div>
+
+</body>
+</html>

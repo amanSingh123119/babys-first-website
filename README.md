@@ -1,8 +1,7 @@
 # 🌙 Pip's Midnight Nursery
-> **Baby's First Website 2026 — Track 1 Entry**  
 > *“I build the dreams you fall asleep inside.”*
 
-Welcome to **Pip's Midnight Nursery**, a cozy, sleepy, and playful single-page website hosted and narrated by **Pip**, an adorable chibi skull baby who works as a **Junior Dream Engineer** floating high above the city in the clouds.
+Welcome to **Pip's Midnight Nursery**, a cozy, sleepy, and playful interactive web experience hosted and narrated by **Pip**, an adorable chibi skull baby who works as a **Junior Dream Engineer** floating high above the city in the clouds.
 
 ---
 
@@ -29,20 +28,16 @@ Welcome to **Pip's Midnight Nursery**, a cozy, sleepy, and playful single-page w
 1. **The Lullaby Lab**: A clickable vintage lullaby box that synthesizes a calming pentatonic lullaby sequence via Web Audio, complete with a smooth volume slider and floating musical notes.
 2. **Nightlight Collection**: 4 lantern variations created from a single image using CSS filters (`hue-rotate`, `brightness`), with interactive hover glows and expandable modal dialogs.
 3. **Dream Delivery Routes**: An illustrated SVG rooftop map with a glowing dashed flight path. Pip's cloud carrier flies across chimneys and rooftops, delivering dreams and incrementing the live delivery counter.
-4. **Bonus — Rattle & Block Toys**: An interactive celestial rattle with realistic shaker sounds + shake physics, and 3 stackable dream blocks with satisfying wooden thunk audio.
+4. **Interactive Toys**: Celestial rattle with realistic shaker sounds + shake physics, and 3 stackable dream blocks with satisfying wooden thunk audio.
 
 ### 4. 📖 Pip's Story & Interactive Touches
-- **Interactive Eye Tracking**: Two glowing pupils in Pip's hero avatar gently follow your mouse cursor and touch movements.
+- **Interactive Character Art**: Pip floating peacefully atop fluffy clouds with warm glowing golden eyes.
 - **Day/Night Expression Shift**: Toggling the theme changes Pip's live speech bubble dialogue.
 - **Scroll-Triggered Timeline**: 4 chapters that softly fade in and slide up using an `IntersectionObserver`.
 - **Fullscreen Bedtime Story Movie (`story.html`)**: Cinematic bedtime story mode with waking animations and lullaby music.
-
-### 5. ⭐ Hackathon Side Quests Completed (+13 / +13 Bonus Points!)
-1. **Live Guestbook (+2 pts)**: Visitors can sign Pip's wall with custom handles, bedtime wishes, and sticker badges (🌙, ⭐, 🧸, 🍼, ☁️, 🎀) stored in `localStorage`, accompanied by celestial confetti and harp chimes.
-2. **Sparkle Cursor Trail (+2 pts)**: Canvas particle engine rendering pastel stardust drifting behind the cursor.
-3. **Hit Counter Odometer (+1 pt)**: Vintage mechanical 6-digit tumbler odometer with 3D bevels, session counting, and an interactive `[+1 Click]` test button with mechanical sound.
-4. **Click Sounds + Mute Switch (+3 pts)**: Mathematical Web Audio sound synthesis for every action, with an easy-to-spot Sound On / Mute toggle in the top bar.
-5. **Responsive Chaos Mode (+5 pts)**: One-click header toggle activating authentic 90s early-web glory (scrolling marquee strip, comic/pixel typography, warning stripes, and retro wobble) fully responsive on mobile and desktop.
+- **Live Starlight Guestbook**: Visitors can sign Pip's nursery wall with custom nicknames, bedtime wishes, and sticker badges (🌙, ⭐, 🧸, 🍼, ☁️, 🎀) stored in `localStorage`, accompanied by celestial confetti and harp chimes.
+- **Sparkle Stardust Trail**: Canvas particle engine rendering pastel stardust drifting behind pointer movement.
+- **Vintage Visitor Odometer**: Vintage mechanical 6-digit tumbler odometer with 3D bevels, session counting, and an interactive `[+1 Click]` test button.
 
 ### 6. 🎁 Secret Easter Eggs & Early-Web Nostalgia
 - **Click the Moon 5 Times**: Fast-click the sleepy crescent moon in the top navigation to trigger Pip's Secret Moon Serenade with starry confetti.
@@ -111,8 +106,8 @@ Then visit: `http://localhost:8080` in your web browser.
 
 ---
 
-## 💖 Credits
-- **Host & Narrator**: Pip, Junior Dream Engineer
-- **Official Assets**: haX.baby
-- **Fonts**: Fredoka & Nunito via Google Fonts
-- **Built For**: Baby's First Website 2026 (Track 1)
+## 💖 Credits & Acknowledgments
+- **Character & Narrator**: Pip, Junior Dream Engineer
+- **Typography**: Fredoka & Nunito via Google Fonts
+- **Audio Synthesis**: Native Web Audio API (zero external sound dependencies)
+- **License**: MIT License • Free & Open Source for cozy bedtime dreamers everywhere

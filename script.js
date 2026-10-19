@@ -1165,24 +1165,24 @@
   const defaultSampleSignatures = [
     {
       id: 1,
-      name: "Sai Ram Dash (haX.baby)",
-      message: "Welcome to Baby's First Website! Keep building with wide-eyed curiosity and ship cozy things. 🍼",
+      name: "Luna the Night Owl",
+      message: "Pip's lavender lantern helped all our little owlets drift right into peaceful sleep! 🌙",
       sticker: "🌙",
-      time: "Kickoff Day"
+      time: "Earlier tonight"
     },
     {
       id: 2,
-      name: "The Code Vibes Community",
-      message: "Zero hydration lag, 100% cozy heart. Cheering for all 11,081 builders pushing live URLs tonight! 🚀",
-      sticker: "🧸",
+      name: "Starlight Sailor",
+      message: "Heard the pentatonic lullaby box all the way from the Milky Way. Pure bedtime magic! ✨",
+      sticker: "⭐",
       time: "Yesterday"
     },
     {
       id: 3,
       name: "Sleepy Cloud Bunny",
-      message: "Pip's rooftop carrier is officially the coziest invention ever. Sweet dreams everyone! ⭐",
-      sticker: "☁️",
-      time: "2 hours ago"
+      message: "Pip's rooftop carrier is officially the coziest invention ever. Sweet dreams everyone! ☁️",
+      sticker: "🧸",
+      time: "3 days ago"
     }
   ];
 
@@ -1315,7 +1315,7 @@
      Authentic mechanical tumbler reels incremented per visit with audio click
      ========================================================================== */
   const ODOMETER_KEY = 'pip_nursery_visitor_count';
-  const BASE_VISITS = 11081; // Reported hackathon registrations milestone
+  const BASE_VISITS = 12480; // Baseline visits counter for Pip's nursery
 
   function getVisitorCount() {
     let count = parseInt(localStorage.getItem(ODOMETER_KEY), 10);
@@ -1352,7 +1352,7 @@
   }
   renderOdometer(currentVisits);
 
-  // Interactive Test Click Button for Hackathon Judges
+  // Interactive Test Click Button for Visitors & Reviewers
   const btnTestVisit = document.getElementById('btn-test-visit');
   if (btnTestVisit) {
     btnTestVisit.addEventListener('click', () => {
@@ -1373,9 +1373,9 @@
     });
   }
 
-  // Log friendly greeting for hackathon judges inspecting devtools
+  // Log friendly greeting for developers inspecting devtools
   console.log(
-    '%c☁️ Welcome to Pip\'s Midnight Nursery! 🌙\n%cTrack 1 — Baby\'s First Website 2026\nDesigned & built with love, Web Audio API, and cozy starlight.',
+    '%c☁️ Welcome to Pip\'s Midnight Nursery! 🌙\n%cThe Junior Dream Engineer\'s Bedtime Sanctuary\nDesigned & built with love, Web Audio API, and cozy starlight.',
     'color: #a34063; font-family: sans-serif; font-size: 16px; font-weight: bold;',
     'color: #5c4033; font-family: sans-serif; font-size: 12px;'
   );

@@ -36,7 +36,7 @@
       </a>
 
       <!-- Navigation Links -->
-      <nav class="nav-links" aria-label="Main Navigation">
+      <nav class="nav-links" id="main-nav-links" aria-label="Main Navigation">
         <a href="#about" class="nav-link">About Pip</a>
         <a href="#projects" class="nav-link">Dream Projects</a>
         <a href="#guestbook" class="nav-link">Guestbook</a>
@@ -56,9 +56,19 @@
           <span class="control-icon" id="sound-icon">🔊</span>
           <span class="control-label" id="sound-label">Sound On</span>
         </button>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav-links">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+          <span class="hamburger-line line-3"></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Navigation Backdrop Overlay -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
 
   <main id="main-content">
     <!-- ==============================================

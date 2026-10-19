@@ -1373,6 +1373,56 @@
     });
   }
 
+  /* ==========================================================================
+     18. MOBILE NAVIGATION DRAWER & ACCESSIBILITY
+     ========================================================================== */
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('main-nav-links');
+  const navBackdrop = document.getElementById('mobile-nav-backdrop');
+
+  if (mobileToggle && navLinks) {
+    function toggleMobileMenu(forceClose = false) {
+      const isOpen = forceClose ? false : !navLinks.classList.contains('open');
+      navLinks.classList.toggle('open', isOpen);
+      mobileToggle.classList.toggle('active', isOpen);
+      mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (navBackdrop) {
+        navBackdrop.classList.toggle('visible', isOpen);
+      }
+      document.body.classList.toggle('mobile-menu-open', isOpen);
+    }
+
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      ensureAudioUnlocked();
+      playChimeSound();
+      toggleMobileMenu();
+    });
+
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', () => toggleMobileMenu(true));
+    }
+
+    // Close when clicking any nav link
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => toggleMobileMenu(true));
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        toggleMobileMenu(true);
+      }
+    });
+
+    // Close on resize above 820px
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 820 && navLinks.classList.contains('open')) {
+        toggleMobileMenu(true);
+      }
+    });
+  }
+
   // Log friendly greeting for developers inspecting devtools
   console.log(
     '%c☁️ Welcome to Pip\'s Midnight Nursery! 🌙\n%cThe Junior Dream Engineer\'s Bedtime Sanctuary\nDesigned & built with love, Web Audio API, and cozy starlight.',

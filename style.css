@@ -352,6 +352,79 @@ body.night-mode .ambient-stars {
   transform: translateY(0);
 }
 
+/* Mobile Hamburger Button (Base) */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--bg-card-border);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+  z-index: 1010;
+}
+
+.mobile-menu-btn:hover {
+  border-color: var(--accent-berry);
+  color: var(--accent-berry);
+  transform: scale(1.05);
+}
+
+.mobile-menu-btn:active {
+  transform: scale(0.95);
+}
+
+.hamburger-line {
+  display: block;
+  width: 18px;
+  height: 2.5px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, background-color 0.25s ease;
+}
+
+.mobile-menu-btn.active .line-1 {
+  transform: translateY(7.5px) rotate(45deg);
+  background-color: var(--accent-berry);
+}
+
+.mobile-menu-btn.active .line-2 {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.mobile-menu-btn.active .line-3 {
+  transform: translateY(-7.5px) rotate(-45deg);
+  background-color: var(--accent-berry);
+}
+
+/* Mobile Nav Backdrop Overlay */
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 14, 36, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 998;
+}
+
+.mobile-nav-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Chaos Mode Button Special Styling */
 .chaos-btn {
   border-color: rgba(243, 190, 68, 0.4);
@@ -2246,102 +2319,7 @@ body.night-mode .secret-badge {
   transform: translateY(-2px);
 }
 
-/* --------------------------------------------------------------------------
-   12. RESPONSIVENESS (Mobile & Tablet)
-   -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 32px;
-  }
-
-  .hero-avatar-wrapper {
-    order: -1;
-  }
-
-  .hero-eyebrow,
-  .hero-cta-group {
-    justify-content: center;
-  }
-
-  .speech-bubble-tail {
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 32px;
-  }
-
-  .about-portrait-card {
-    order: -1;
-  }
-
-  .personality-chips {
-    justify-content: center;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .modal-body {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 24px;
-  }
-
-  .modal-image-container {
-    max-width: 200px;
-    margin: 0 auto;
-  }
-
-  .modal-features {
-    justify-content: center;
-  }
-
-  .modal-action-btn {
-    align-self: center;
-  }
-}
-
-@media (max-width: 640px) {
-  .top-nav {
-    height: auto;
-    padding: 10px 0;
-  }
-
-  .nav-container {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .nav-links {
-    display: none; /* Keep top bar clean on small phones */
-  }
-
-  .hero-title {
-    font-size: 3rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.3rem;
-  }
-
-  .toys-workbench {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-top,
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 16px;
-  }
-}
+/* Full Responsive Design styles are declared at the end of the stylesheet for correct CSS cascade ordering */
 
 /* --------------------------------------------------------------------------
    11. HACKATHON STATUS BAR & COUNTDOWN TIMER
@@ -2851,9 +2829,539 @@ body.chaos-mode .hero-speech-bubble {
   word-break: break-word;
 }
 
-@media (max-width: 900px) {
+/* ==========================================================================
+   14. COMPREHENSIVE RESPONSIVE DESIGN (Desktop, Tablet, Mobile)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   A. LAPTOPS & TABLETS LANDSCAPE (max-width: 1080px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .section {
+    padding: 70px 24px;
+  }
+
+  .nav-container {
+    padding: 0 20px;
+  }
+
+  .about-grid {
+    grid-template-columns: 320px 1fr;
+    gap: 28px;
+  }
+
+  .projects-grid {
+    gap: 24px;
+  }
+
+  .guestbook-container {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   B. TABLETS PORTRAIT & MEDIUM SCREENS (max-width: 860px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  /* Mobile Navigation Drawer Activation */
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 72px;
+    left: 16px;
+    right: 16px;
+    background: var(--bg-surface-translucent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 2px solid var(--bg-card-border);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25), var(--card-glow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-14px) scale(0.97);
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1.05rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    border: 1.5px solid var(--bg-card-border);
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    background: var(--accent-berry-light);
+    border-color: var(--accent-berry);
+    transform: translateX(4px);
+  }
+
+  /* Hero Section Stacking */
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 36px;
+  }
+
+  .hero-avatar-wrapper {
+    order: -1;
+  }
+
+  .pip-hero-card {
+    max-width: min(400px, 88vw);
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow,
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .speech-bubble {
+    max-width: 560px;
+    margin: 0 auto 16px auto;
+  }
+
+  .speech-bubble-tail {
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  /* About Section Stacking */
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .about-portrait-card {
+    order: -1;
+  }
+
+  .portrait-frame {
+    max-width: min(340px, 88vw);
+    margin: 0 auto;
+  }
+
+  .personality-chips {
+    justify-content: center;
+  }
+
+  /* Growth Milestones Track */
+  .growth-ruler-track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  /* Projects Section Stacking */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Story Cinema Callout */
+  .story-cinema-banner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 28px;
+    padding: 32px 24px;
+  }
+
+  .cinema-cta-wrap {
+    justify-content: center;
+  }
+
+  .cinema-preview-img {
+    max-width: 190px;
+    margin: 0 auto;
+  }
+
+  /* Guestbook Stacking */
   .guestbook-container {
     grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Modal Dialogs */
+  .modal-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 28px 20px;
+    gap: 20px;
+  }
+
+  .modal-image-container {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  .modal-features {
+    justify-content: center;
+  }
+
+  .modal-action-btn {
+    align-self: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   C. SMARTPHONES & LARGE MOBILES (max-width: 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .section {
+    padding: 50px 16px;
+  }
+
+  /* Header Compactness */
+  .top-nav {
+    height: 62px;
+  }
+
+  .nav-container {
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .brand-title {
+    font-size: 1.1rem;
+  }
+
+  .brand-badge {
+    display: none; /* Keep header strictly 1 line */
+  }
+
+  .secret-moon-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+  }
+
+  /* Show icons only on action buttons for compact fit */
+  .control-btn {
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    justify-content: center;
+  }
+
+  .control-btn .control-label {
+    display: none;
+  }
+
+  /* Typography Sizing */
+  .hero-title {
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .speech-bubble {
+    padding: 16px 20px;
+    font-size: 1.02rem;
+  }
+
+  .pip-hero-card {
+    padding: 14px;
+  }
+
+  .pip-hint-badge {
+    font-size: 0.76rem;
+    padding: 4px 10px;
+  }
+
+  /* Milestones on Mobile */
+  .growth-ruler-track {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .growth-milestone-btn {
+    width: 100%;
+    padding: 12px 16px;
+  }
+
+  .growth-detail-bubble {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 18px 16px;
+  }
+
+  /* Project Cards on Mobile */
+  .project-card {
+    padding: 22px 18px;
+  }
+
+  .project-card-title {
+    font-size: 1.35rem;
+  }
+
+  .lullaby-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .lullaby-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .volume-slider-wrap {
+    width: 100%;
+  }
+
+  .custom-slider {
+    width: 100%;
+  }
+
+  /* Toys Workbench */
+  .toys-workbench {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* Story Timeline on Mobile */
+  .story-scene {
+    grid-template-columns: 56px 1fr;
+    gap: 14px;
+    padding: 18px 16px;
+  }
+
+  .scene-icon-wrap {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
+
+  .scene-quote {
+    font-size: 1.15rem;
+  }
+
+  /* Guestbook Form */
+  .guestbook-form-card,
+  .guestbook-wall-wrapper {
+    padding: 20px 16px;
+  }
+
+  .form-input,
+  .form-textarea {
+    font-size: 16px; /* Prevents auto-zoom in iOS Safari */
+    padding: 12px 14px;
+  }
+
+  /* Footer on Mobile */
+  .footer-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .footer-link-btn,
+  .back-to-top-btn {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  /* Modals on Mobile */
+  .modal-card {
+    width: 94%;
+    max-height: 88vh;
+    padding: 6px;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-body {
+    padding: 20px 14px;
+  }
+
+  .modal-title {
+    font-size: 1.35rem;
+  }
+
+  .modal-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   D. SMALL MOBILES & NARROW SCREENS (max-width: 420px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 420px) {
+  .section {
+    padding: 40px 12px;
+  }
+
+  .nav-container {
+    padding: 0 10px;
+  }
+
+  .nav-brand {
+    gap: 8px;
+  }
+
+  .brand-title {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .speech-bubble {
+    font-size: 0.95rem;
+    padding: 14px 16px;
+  }
+
+  .pip-hero-card,
+  .portrait-frame {
+    padding: 10px;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Lanterns on Smallest Screens: 1 clean column */
+  .lanterns-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .lantern-item-btn {
+    flex-direction: row;
+    padding: 12px;
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .lantern-img-frame {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+  }
+
+  .lantern-name {
+    font-size: 0.95rem;
+  }
+
+  /* Delivery Routes Map */
+  .routes-actions-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .deliver-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .delivery-status-pill {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* Story Scene Vertical Stack */
+  .story-scene {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .scene-visual-frame {
+    margin: 0 auto;
+  }
+
+  /* Guestbook Stickers Grid */
+  .sticker-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .sticker-chip {
+    padding: 6px 4px;
+    font-size: 0.76rem;
+    justify-content: center;
+  }
+
+  .sticker-emoji {
+    font-size: 1rem;
+  }
+
+  /* Vintage Odometer on Narrow Phones */
+  .odometer-display {
+    padding: 4px 6px;
+    gap: 2px;
+  }
+
+  .odometer-wheel {
+    width: 22px;
+    height: 32px;
+  }
+
+  .odometer-digit {
+    font-size: 0.95rem;
+  }
+
+  .odometer-sub {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
   }
 }
 

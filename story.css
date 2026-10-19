@@ -1226,6 +1226,7 @@ body.story-body {
 
   .story-header {
     padding: 0 16px;
+    top: 14px;
   }
 
   .story-badge {
@@ -1237,8 +1238,93 @@ body.story-body {
     font-size: 0.84rem;
   }
 
+  .pip-stage {
+    width: min(320px, 90vw);
+    height: 230px;
+  }
+
+  .pip-vector {
+    width: 180px;
+    height: 180px;
+  }
+
+  .story-pip-img,
+  .pip-master-craftsman,
+  .pip-guardian-img {
+    max-width: min(320px, 86vw);
+  }
+
+  .workshop-asset-img {
+    max-width: 140px;
+    height: auto;
+  }
+
   .sweet-dreams-text {
     font-size: 1.4rem;
+  }
+
+  .finale-button-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    gap: 12px;
+  }
+
+  .btn-tale {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .main-story-title {
+    font-size: 2.6rem;
+  }
+
+  .main-story-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .story-header {
+    padding: 0 10px;
+  }
+
+  .back-home-pill, .story-audio-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .pip-stage {
+    width: min(280px, 92vw);
+    height: 190px;
+  }
+
+  .pip-vector {
+    width: 150px;
+    height: 150px;
+  }
+
+  .story-narration-box {
+    padding: 22px 16px;
+    margin-top: 24px;
+    border-radius: var(--radius-card);
+  }
+
+  .narrative-heading {
+    font-size: 1.45rem;
+  }
+
+  .narrative-quote {
+    font-size: 1.15rem;
+  }
+
+  .narrative-sub {
+    font-size: 0.95rem;
+  }
+
+  .creature-card {
+    padding: 10px 14px;
   }
 }
 

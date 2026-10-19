@@ -82,21 +82,16 @@ Then visit: `http://localhost:8080` in your web browser.
    git commit -m "Initial commit for Pip's Midnight Nursery - Track 1 Baby's First Website 2026"
    ```
 
-2. **Push to GitHub**:
-   Create a new public repository on GitHub (e.g. `pips-midnight-nursery`), then run:
-   ```bash
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/pips-midnight-nursery.git
-   git push -u origin main
-   ```
+### 2. Live GitHub Deployment
+- **Public GitHub Repository**: [github.com/amanSingh123119/babys-first-website](https://github.com/amanSingh123119/babys-first-website)
+- **Live Demo (GitHub Pages)**: [amansingh123119.github.io/babys-first-website](https://amansingh123119.github.io/babys-first-website/)
 
-3. **Enable GitHub Pages**:
-   - Go to your repository on GitHub.
-   - Click **Settings** → **Pages** (under "Code and automation").
-   - Under **Build and deployment** > **Branch**, select `main` branch and `/ (root)` folder.
-   - Click **Save**.
-   - Within 1–2 minutes, your website will be live at:
-     `https://YOUR_USERNAME.github.io/pips-midnight-nursery/`
+### 3. How to Enable GitHub Pages (One-time Setup)
+1. Go to [Repository Settings](https://github.com/amanSingh123119/babys-first-website/settings/pages).
+2. Under **Build and deployment** > **Branch**, select `main` branch and `/ (root)` folder.
+3. Click **Save**.
+4. In ~60 seconds, your website will be live at:
+   `https://amansingh123119.github.io/babys-first-website/`
 
 ---
 

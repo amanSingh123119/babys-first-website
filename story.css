@@ -1,0 +1,1259 @@
+/* ==========================================================================
+   PIP'S SLEEPY NURSERY TALE — CINEMATIC SCROLL STORYTELLING
+   Visual Aesthetics: Pixar-short film bedtime style, soft pastel glows,
+   gentle cartoon animations, and dreamy starry skies.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS & PALETTE
+   -------------------------------------------------------------------------- */
+:root {
+  /* Night Sky Gradient Palette */
+  --sky-deep: #0b0d1e;
+  --sky-midnight: #141838;
+  --sky-indigo: #1d214a;
+  --sky-twilight: #2b2b5f;
+
+  /* Pastel Glow Accents */
+  --pastel-lavender: #bfaee3;
+  --pastel-lavender-glow: rgba(191, 174, 227, 0.4);
+  --pastel-peach: #ffd6b3;
+  --pastel-pink: #f8a5c2;
+  --pastel-rose: #ea869e;
+  --pastel-blue: #a3c9f7;
+  --pastel-butter: #ffeaa7;
+  --pastel-star: #fff275;
+  --cream-white: #fffdfa;
+
+  /* Typography */
+  --font-heading: 'Fredoka', cursive, sans-serif;
+  --font-body: 'Nunito', sans-serif;
+  --font-story: 'Fredoka', cursive, sans-serif;
+
+  /* Radii & Shadows */
+  --radius-pill: 9999px;
+  --radius-card: 28px;
+  --radius-round: 36px;
+  --glow-warm: 0 0 35px rgba(255, 234, 167, 0.45);
+  --glow-lavender: 0 0 45px rgba(191, 174, 227, 0.35);
+  --glow-pink: 0 0 40px rgba(248, 165, 194, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL BASE & RESET
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body.story-body {
+  cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2732%27%20height%3D%2732%27%20viewBox%3D%270%200%2032%2032%27%3E%20%3Cdefs%3E%20%3Cfilter%20id%3D%27g%27%20x%3D%27-30%25%27%20y%3D%27-30%25%27%20width%3D%27160%25%27%20height%3D%27160%25%27%3E%20%3CfeDropShadow%20dx%3D%270%27%20dy%3D%271%27%20stdDeviation%3D%271.5%27%20flood-color%3D%27%23ffd166%27%20flood-opacity%3D%270.9%27/%3E%20%3C/filter%3E%20%3C/defs%3E%20%3Cpath%20d%3D%27M3%203%20L12%2027%20L16%2017%20L26%2013%20Z%27%20fill%3D%27%23fffdfa%27%20stroke%3D%27%2338293d%27%20stroke-width%3D%271.8%27%20stroke-linejoin%3D%27round%27%20filter%3D%27url%28%23g%29%27/%3E%20%3Ccircle%20cx%3D%2716%27%20cy%3D%2717%27%20r%3D%272%27%20fill%3D%27%23ffd166%27/%3E%20%3Cpolygon%20points%3D%2723%2C6%2024%2C9%2027%2C10%2024%2C11%2023%2C14%2022%2C11%2019%2C10%2022%2C9%27%20fill%3D%27%23ffd166%27/%3E%20%3C/svg%3E") 3 3, auto;
+}
+
+button, a, .tracker-step, [role="button"], .back-home-pill, .story-audio-btn, .btn-tale, .creature-card, .shelf-item {
+  cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2732%27%20height%3D%2732%27%20viewBox%3D%270%200%2032%2032%27%3E%20%3Cdefs%3E%20%3Cfilter%20id%3D%27gp%27%20x%3D%27-30%25%27%20y%3D%27-30%25%27%20width%3D%27160%25%27%20height%3D%27160%25%27%3E%20%3CfeDropShadow%20dx%3D%270%27%20dy%3D%272%27%20stdDeviation%3D%272%27%20flood-color%3D%27%23f8a5c2%27%20flood-opacity%3D%270.95%27/%3E%20%3C/filter%3E%20%3C/defs%3E%20%3Cpath%20d%3D%27M4%203%20L12%2025%20L16%2016%20L25%2012%20Z%27%20fill%3D%27%23ffeaa7%27%20stroke%3D%27%23684a5a%27%20stroke-width%3D%271.8%27%20stroke-linejoin%3D%27round%27%20filter%3D%27url%28%23gp%29%27/%3E%20%3Cpolygon%20points%3D%2724%2C5%2025.5%2C8.5%2029%2C10%2025.5%2C11.5%2024%2C15%2022.5%2C11.5%2019%2C10%2022.5%2C8.5%27%20fill%3D%27%23f8a5c2%27/%3E%20%3Ccircle%20cx%3D%2716%27%20cy%3D%2716%27%20r%3D%272.5%27%20fill%3D%27%23ffffff%27/%3E%20%3C/svg%3E") 4 3, pointer !important;
+}
+
+body.story-body {
+  font-family: var(--font-body);
+  background: var(--sky-deep);
+  color: var(--cream-white);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  selection-background-color: var(--pastel-pink);
+}
+
+::selection {
+  background: var(--pastel-pink);
+  color: #2b1f31;
+}
+
+/* --------------------------------------------------------------------------
+   3. BACKGROUND STAR CANVAS & PARALLAX LAYERS
+   -------------------------------------------------------------------------- */
+.star-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fx-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.parallax-bg-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  transition: transform 0.15s ease-out;
+}
+
+.layer-deep {
+  z-index: 0;
+  background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #0c0d1c 65%, #05060d 100%);
+}
+
+.layer-mid {
+  z-index: 2;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 15% 25%, #ffffff 100%, transparent),
+    radial-gradient(2px 2px at 45% 65%, #ffeaa7 100%, transparent),
+    radial-gradient(1.5px 1.5px at 75% 30%, #f8a5c2 100%, transparent),
+    radial-gradient(2px 2px at 85% 80%, #bfaee3 100%, transparent),
+    radial-gradient(1px 1px at 30% 90%, #ffffff 100%, transparent),
+    radial-gradient(2.5px 2.5px at 60% 15%, #ffd6b3 100%, transparent);
+  background-size: 550px 550px;
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   4. FIXED STORY HEADER CONTROLS
+   -------------------------------------------------------------------------- */
+.story-header {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: auto;
+}
+
+.back-home-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(25, 27, 54, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(191, 174, 227, 0.35);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  color: var(--cream-white);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.92rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.back-home-pill:hover {
+  background: rgba(43, 43, 95, 0.95);
+  border-color: var(--pastel-pink);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(248, 165, 194, 0.35);
+}
+
+.story-badge {
+  background: rgba(255, 234, 167, 0.15);
+  border: 1px solid rgba(255, 234, 167, 0.3);
+  color: var(--pastel-butter);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+.story-audio-btn {
+  background: rgba(25, 27, 54, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(191, 174, 227, 0.35);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  color: var(--cream-white);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.92rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.story-audio-btn:hover {
+  background: rgba(43, 43, 95, 0.95);
+  border-color: var(--pastel-butter);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.story-audio-btn.muted {
+  opacity: 0.7;
+}
+
+/* --------------------------------------------------------------------------
+   5. VERTICAL SCROLL PROGRESS TRACKER
+   -------------------------------------------------------------------------- */
+.scroll-tracker {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.tracker-rail {
+  width: 4px;
+  height: 220px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  position: relative;
+}
+
+.tracker-fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, var(--pastel-star), var(--pastel-pink));
+  border-radius: 4px;
+  transition: height 0.1s linear;
+}
+
+.tracker-glow-star {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.3rem;
+  filter: drop-shadow(0 0 10px var(--pastel-star));
+  transition: top 0.1s linear;
+}
+
+.tracker-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 230px;
+}
+
+.tracker-step {
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.tracker-step.active {
+  color: var(--pastel-butter);
+  text-shadow: 0 0 12px rgba(255, 234, 167, 0.6);
+  transform: scale(1.08) translateX(-4px);
+}
+
+/* --------------------------------------------------------------------------
+   6. SCENE SECTIONS (CONTINUOUS VERTICAL STORYTELLING)
+   -------------------------------------------------------------------------- */
+.story-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.scene-section {
+  min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 100px 24px;
+  overflow: hidden;
+}
+
+.scene-ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  z-index: -1;
+}
+
+.glow-hero {
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(191, 174, 227, 0.28) 0%, rgba(255, 214, 179, 0.18) 60%, transparent 100%);
+}
+
+/* --------------------------------------------------------------------------
+   7. OPENING HERO SCENE: Sleeping Pip
+   -------------------------------------------------------------------------- */
+.scene-hero {
+  min-height: 100vh;
+  text-align: center;
+}
+
+.hero-content-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.eyebrow-stars {
+  font-size: 1.2rem;
+  color: var(--pastel-butter);
+  letter-spacing: 0.3em;
+  display: inline-block;
+  margin-bottom: 8px;
+  animation: starPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes starPulse {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.main-story-title {
+  font-family: var(--font-heading);
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: var(--cream-white);
+  text-shadow: 0 4px 30px rgba(191, 174, 227, 0.5), 0 0 60px rgba(255, 234, 167, 0.3);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.main-story-subtitle {
+  font-family: var(--font-story);
+  font-size: 1.6rem;
+  color: var(--pastel-peach);
+  font-weight: 500;
+  margin-top: 10px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+}
+
+/* Sleeping Pip Pod */
+.pip-stage {
+  position: relative;
+  width: 360px;
+  height: 260px;
+  margin: 10px auto;
+  animation: gentleCloudBob 4s ease-in-out infinite;
+}
+
+@keyframes gentleCloudBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.sleeping-cloud-pod {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pip-character {
+  position: absolute;
+  top: 15px;
+  z-index: 2;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pip-vector {
+  width: 220px;
+  height: 220px;
+  display: block;
+  filter: drop-shadow(0 10px 25px rgba(191, 174, 227, 0.3));
+}
+
+.cloud-cushion {
+  position: absolute;
+  bottom: 0;
+  width: 340px;
+  z-index: 1;
+}
+
+.cloud-vector {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.35));
+}
+
+/* Zzz Animation */
+.zzz-container {
+  position: absolute;
+  top: -10px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.zzz {
+  font-family: var(--font-heading);
+  color: var(--pastel-butter);
+  font-weight: 700;
+  opacity: 0;
+  position: absolute;
+  animation: floatZzz 3s infinite linear;
+}
+
+.z1 { font-size: 1.1rem; animation-delay: 0s; }
+.z2 { font-size: 1.4rem; animation-delay: 1s; }
+.z3 { font-size: 1.8rem; animation-delay: 2s; }
+
+@keyframes floatZzz {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  30% { opacity: 0.9; }
+  80% { opacity: 0.6; }
+  100% { transform: translate(25px, -45px) scale(1.2); opacity: 0; }
+}
+
+/* ==========================================================================
+   UNIVERSAL PIP EYE TRACKING SYSTEM (Storytelling Scenes)
+   ========================================================================== */
+.pip-story-tracker-wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.pip-story-tracker-wrap .story-pip-img,
+.pip-story-tracker-wrap .pip-approach-img,
+.pip-story-tracker-wrap .pip-master-craftsman,
+.pip-story-tracker-wrap .pip-guardian-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Scroll Invitation Cue */
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  animation: cueBounce 2.5s infinite ease-in-out;
+}
+
+.cue-text {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--pastel-lavender);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.cue-star-pulse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4rem;
+  color: var(--pastel-butter);
+}
+
+.cue-arrow {
+  font-size: 1.2rem;
+  margin-top: -4px;
+}
+
+@keyframes cueBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   8. STORY NARRATIVE CARD (Appears in every scene)
+   -------------------------------------------------------------------------- */
+.story-narration-box {
+  background: rgba(22, 25, 52, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(191, 174, 227, 0.28);
+  border-radius: var(--radius-round);
+  padding: 36px 44px;
+  max-width: 680px;
+  text-align: center;
+  margin-top: 48px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), var(--glow-lavender);
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  z-index: 20;
+}
+
+.story-narration-box.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.chapter-pill {
+  display: inline-block;
+  background: rgba(255, 234, 167, 0.15);
+  border: 1px solid rgba(255, 234, 167, 0.4);
+  color: var(--pastel-butter);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.narrative-heading {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cream-white);
+  margin-bottom: 14px;
+}
+
+.narrative-quote {
+  font-family: var(--font-heading);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--pastel-peach);
+  line-height: 1.45;
+  margin-bottom: 14px;
+  font-style: normal;
+  text-shadow: 0 2px 14px rgba(255, 214, 179, 0.3);
+}
+
+.narrative-sub {
+  color: #d6ccdf;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   9. CHAPTER ONE: The Starlight Awakening
+   -------------------------------------------------------------------------- */
+.scene-ch1 {
+  background: radial-gradient(circle at 50% 50%, #1e204c 0%, #101229 70%);
+}
+
+.celestial-canvas-stage {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated Shooting Star Trail */
+.shooting-star-wrap {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  display: flex;
+  align-items: center;
+  transform: rotate(-35deg);
+  opacity: 0;
+  transition: all 1s ease-out;
+  pointer-events: none;
+}
+
+.shooting-star-wrap.triggered {
+  opacity: 1;
+  animation: starDescend 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes starDescend {
+  0% { transform: translate(120px, -120px) rotate(-35deg) scale(0.5); opacity: 0; }
+  30% { opacity: 1; }
+  80% { transform: translate(-80px, 60px) rotate(-35deg) scale(1.2); opacity: 1; }
+  100% { transform: translate(-120px, 90px) rotate(-35deg) scale(0.2); opacity: 0; }
+}
+
+.star-head {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 0 16px var(--pastel-star));
+}
+
+.star-tail {
+  width: 140px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pastel-star), transparent);
+  border-radius: 4px;
+}
+
+/* Island & Pip Awakening */
+.ch1-cloud-island {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.impact-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 234, 167, 0.35) 0%, rgba(248, 165, 194, 0.2) 50%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.impact-glow.glowing {
+  opacity: 1;
+}
+
+.story-pip-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-round);
+  border: 3px solid rgba(255, 234, 167, 0.45);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 234, 167, 0.3);
+  background: radial-gradient(circle at 50% 50%, #fffdf8 0%, #fff6ec 60%, #faede1 100%);
+  padding: 8px;
+  animation: pipWonderFloat 3.8s ease-in-out infinite;
+}
+
+@keyframes pipWonderFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+
+.wonder-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.w-spark {
+  position: absolute;
+  color: var(--pastel-star);
+  animation: sparkFloat 2.5s infinite ease-in-out;
+}
+
+.s1 { top: 15%; left: 10%; font-size: 1.4rem; animation-delay: 0s; }
+.s2 { top: 25%; right: 12%; font-size: 1.6rem; animation-delay: 0.8s; }
+.s3 { bottom: 25%; left: 8%; font-size: 1.2rem; animation-delay: 1.4s; }
+.s4 { top: 8%; left: 50%; font-size: 1.5rem; animation-delay: 2s; }
+
+@keyframes sparkFloat {
+  0%, 100% { transform: scale(0.8) translateY(0); opacity: 0.5; }
+  50% { transform: scale(1.3) translateY(-8px); opacity: 1; filter: drop-shadow(0 0 10px #ffeaa7); }
+}
+
+/* --------------------------------------------------------------------------
+   10. CHAPTER TWO: Floating Sanctuary Castle Above City
+   -------------------------------------------------------------------------- */
+.scene-ch2 {
+  background: radial-gradient(circle at 50% 60%, #18193f 0%, #0d0f22 75%);
+}
+
+.city-skyline-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 11, 24, 0.8) 40%, #060710 100%);
+  z-index: 1;
+}
+
+.city-windows {
+  position: absolute;
+  bottom: 20px;
+  left: 5%;
+  width: 90%;
+  height: 60px;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 10% 40%, #ffeaa7 100%, transparent),
+    radial-gradient(1.5px 1.5px at 25% 60%, #ffd6b3 100%, transparent),
+    radial-gradient(1.5px 1.5px at 42% 30%, #ffeaa7 100%, transparent),
+    radial-gradient(1.5px 1.5px at 58% 70%, #fff9e6 100%, transparent),
+    radial-gradient(1.5px 1.5px at 75% 45%, #ffd6b3 100%, transparent),
+    radial-gradient(1.5px 1.5px at 90% 55%, #ffeaa7 100%, transparent);
+  background-size: 180px 40px;
+  opacity: 0.6;
+}
+
+.floating-nursery-sanctuary {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.castle-illustration-wrap {
+  width: 100%;
+  max-width: 580px;
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.5));
+}
+
+.castle-svg {
+  width: 100%;
+  height: auto;
+}
+
+.glowing-portal {
+  filter: drop-shadow(0 0 12px #ffeaa7);
+  animation: portalPulse 3s infinite ease-in-out;
+}
+
+@keyframes portalPulse {
+  0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 8px #ffeaa7); }
+  50% { opacity: 1; filter: drop-shadow(0 0 18px #ffd166); }
+}
+
+.spire-star-pulse {
+  animation: starPulse 2s infinite ease-in-out;
+}
+
+/* Floating Pip Approaching */
+.pip-floating-toward {
+  position: absolute;
+  right: -20px;
+  bottom: 30px;
+  z-index: 10;
+  animation: floatApproach 4.5s ease-in-out infinite;
+}
+
+@keyframes floatApproach {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, -18px) rotate(-4deg); }
+}
+
+.pip-approach-img {
+  width: 220px;
+  height: auto;
+  border-radius: var(--radius-round);
+  border: 2.5px solid rgba(255, 234, 167, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 234, 167, 0.25);
+  background: radial-gradient(circle at 50% 50%, #fffdf8 0%, #fff6ec 60%, #faede1 100%);
+  padding: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   11. CHAPTER THREE: Workshop Interior — Crafting Dreams
+   -------------------------------------------------------------------------- */
+.scene-ch3 {
+  background: radial-gradient(circle at 50% 50%, #201a40 0%, #111026 75%);
+}
+
+.workshop-interior {
+  width: 100%;
+  max-width: 1020px;
+}
+
+.workshop-stage-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr 240px;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Shelves on Left */
+.workshop-shelves {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.shelf-tier {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.shelf-item {
+  background: rgba(30, 31, 66, 0.8);
+  border: 1.5px solid rgba(191, 174, 227, 0.3);
+  border-radius: var(--radius-card);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.shelf-item:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--pastel-pink);
+}
+
+.workshop-asset-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: var(--radius-card);
+  border: 1.5px solid rgba(255, 234, 167, 0.3);
+  background: radial-gradient(circle at 50% 50%, #fffdf8 0%, #fff6ec 60%, #faede1 100%);
+  padding: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.shelf-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--pastel-peach);
+  text-align: center;
+}
+
+/* Magic Storybook */
+.magic-storybook-pod {
+  background: rgba(30, 31, 66, 0.8);
+  border: 1.5px solid rgba(191, 174, 227, 0.3);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.storybook-cover {
+  font-size: 2.8rem;
+  position: relative;
+}
+
+.glowing-pages-flutter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-family: var(--font-heading);
+  color: var(--pastel-butter);
+}
+
+.page-flutter {
+  animation: pageHover 2.8s infinite ease-in-out;
+}
+
+.p2 { animation-delay: 1.2s; color: var(--pastel-pink); }
+
+@keyframes pageHover {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Center Pip Crafting */
+.workshop-pip-center {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.magic-weaving-aura {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 234, 167, 0.3) 0%, rgba(191, 174, 227, 0.2) 50%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(25px);
+  animation: auraPulse 4s infinite ease-in-out;
+}
+
+@keyframes auraPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.pip-master-craftsman {
+  width: 100%;
+  max-width: 310px;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-round);
+  border: 3px solid rgba(255, 234, 167, 0.45);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 234, 167, 0.3);
+  background: radial-gradient(circle at 50% 50%, #fffdf8 0%, #fff6ec 60%, #faede1 100%);
+  padding: 8px;
+  animation: craftBob 3.5s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes craftBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Floating Music Sparks */
+.floating-lullaby-sparks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.music-spark {
+  position: absolute;
+  color: var(--pastel-star);
+  font-family: var(--font-heading);
+  animation: noteRise 3.5s infinite linear;
+}
+
+.m1 { left: 20%; top: 30%; font-size: 1.8rem; animation-delay: 0s; color: var(--pastel-pink); }
+.m2 { right: 25%; top: 20%; font-size: 2rem; animation-delay: 0.7s; color: var(--pastel-butter); }
+.m3 { left: 35%; top: 60%; font-size: 1.6rem; animation-delay: 1.4s; color: var(--pastel-lavender); }
+.m4 { right: 18%; top: 55%; font-size: 1.8rem; animation-delay: 2.1s; color: var(--pastel-peach); }
+.m5 { left: 15%; top: 10%; font-size: 1.5rem; animation-delay: 2.8s; color: var(--pastel-star); }
+.m6 { right: 35%; top: 40%; font-size: 1.9rem; animation-delay: 3.2s; color: var(--pastel-rose); }
+
+@keyframes noteRise {
+  0% { transform: translate(0, 20px) scale(0.7); opacity: 0; }
+  30% { opacity: 1; }
+  80% { opacity: 0.8; }
+  100% { transform: translate(20px, -50px) scale(1.1); opacity: 0; }
+}
+
+/* Right Creatures Watching */
+.workshop-creatures {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.creature-card {
+  background: rgba(30, 31, 66, 0.8);
+  border: 1.5px solid rgba(191, 174, 227, 0.3);
+  border-radius: var(--radius-card);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  animation: creatureWiggle 4s infinite ease-in-out;
+}
+
+.creature-bunny { animation-delay: 0s; }
+.creature-owl { animation-delay: 1.2s; }
+.creature-star { animation-delay: 2.4s; }
+
+@keyframes creatureWiggle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+.creature-avatar {
+  font-size: 2.4rem;
+}
+
+.creature-bubble {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  color: var(--pastel-butter);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------------
+   12. CHAPTER FOUR: Finale — Emotional Bedtime Promise
+   -------------------------------------------------------------------------- */
+.scene-ch4 {
+  background: radial-gradient(circle at 50% 40%, #1c1738 0%, #080914 80%);
+  min-height: 110vh;
+}
+
+.peaceful-world-vista {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drifting-dream-parcels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.drifting-parcel {
+  position: absolute;
+  animation: parcelFloat 5s infinite ease-in-out;
+}
+
+.p1 { left: 10%; top: 20%; font-size: 2rem; animation-delay: 0s; }
+.p2 { right: 12%; top: 15%; font-size: 2.2rem; animation-delay: 1s; }
+.p3 { left: 25%; bottom: 15%; font-size: 1.8rem; animation-delay: 2s; }
+.p4 { right: 28%; bottom: 25%; font-size: 1.6rem; animation-delay: 3s; }
+.p5 { left: 45%; top: -10%; font-size: 2.4rem; animation-delay: 4s; }
+
+@keyframes parcelFloat {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  30% { opacity: 0.9; }
+  80% { opacity: 0.7; }
+  100% { transform: translateY(70px) rotate(15deg); opacity: 0; }
+}
+
+.pip-guardian-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.guardian-glow-halo {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(248, 165, 194, 0.25) 0%, rgba(255, 234, 167, 0.2) 60%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.pip-guardian-img {
+  width: 100%;
+  max-width: 330px;
+  height: auto;
+  border-radius: var(--radius-round);
+  border: 3px solid rgba(248, 165, 194, 0.5);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 40px rgba(248, 165, 194, 0.35);
+  background: radial-gradient(circle at 50% 50%, #fffdf8 0%, #fff6ec 60%, #faede1 100%);
+  padding: 8px;
+  animation: guardianFloat 4s ease-in-out infinite;
+}
+
+@keyframes guardianFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Finale Narrative & Actions */
+.finale-narrative {
+  max-width: 720px;
+  border-color: rgba(248, 165, 194, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), var(--glow-pink);
+}
+
+.finale-pill {
+  background: rgba(248, 165, 194, 0.15);
+  border-color: rgba(248, 165, 194, 0.4);
+  color: var(--pastel-pink);
+}
+
+.finale-heading {
+  font-size: 2.3rem;
+  color: var(--cream-white);
+}
+
+.finale-quote {
+  font-size: 1.7rem;
+  color: var(--pastel-peach);
+  margin-bottom: 24px;
+}
+
+.sweet-dreams-banner {
+  background: rgba(43, 43, 95, 0.75);
+  border: 1.5px dashed rgba(248, 165, 194, 0.5);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.sweet-dreams-text {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--pastel-pink);
+  margin-bottom: 6px;
+  text-shadow: 0 0 20px rgba(248, 165, 194, 0.5);
+}
+
+.sweet-dreams-sub {
+  color: #e5d8ea;
+  font-size: 1.05rem;
+}
+
+.finale-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-tale {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  min-height: 52px;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-replay {
+  background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-rose));
+  color: #2b1f31;
+  box-shadow: 0 8px 24px rgba(234, 134, 158, 0.4);
+}
+
+.btn-replay:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(234, 134, 158, 0.6);
+}
+
+.btn-home {
+  background: rgba(30, 31, 66, 0.9);
+  color: var(--cream-white);
+  border: 1.5px solid rgba(191, 174, 227, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.btn-home:hover {
+  background: rgba(43, 43, 95, 1);
+  border-color: var(--pastel-butter);
+  color: var(--pastel-butter);
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* --------------------------------------------------------------------------
+   13. RESPONSIVE DESIGN (Mobile & Tablet)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .main-story-title {
+    font-size: 4rem;
+  }
+
+  .main-story-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .workshop-stage-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .workshop-shelves {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .workshop-creatures {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .scroll-tracker {
+    display: none;
+  }
+
+  .story-narration-box {
+    padding: 28px 24px;
+    margin-top: 32px;
+  }
+
+  .narrative-heading {
+    font-size: 1.7rem;
+  }
+
+  .narrative-quote {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-story-title {
+    font-size: 3.2rem;
+  }
+
+  .story-header {
+    padding: 0 16px;
+  }
+
+  .story-badge {
+    display: none;
+  }
+
+  .back-home-pill, .story-audio-btn {
+    padding: 8px 14px;
+    font-size: 0.84rem;
+  }
+
+  .sweet-dreams-text {
+    font-size: 1.4rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. ACCESSIBILITY: PREFERS REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .pip-stage, .pip-vector, .story-pip-img, .pip-approach-img, .pip-master-craftsman, .pip-guardian-img {
+    animation: none !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pip's Midnight Nursery — Track 1 Baby's First Website 2026</title>
+  <meta name="description" content="Welcome to Pip's Midnight Nursery! Pip is a cute skull baby Junior Dream Engineer who crafts lullabies, nightlights, and cozy bedtime dreams for little creatures." />
+  
+  <!-- Google Fonts: Fredoka for headings, Nunito for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="day-mode">
+  <!-- Interactive Sparkle Canvas (Cursor trail & Confetti) -->
+  <canvas id="fx-canvas" class="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- Background Ambient Stars Layer -->
+  <div class="ambient-stars" id="ambient-stars" aria-hidden="true"></div>
+
+  <!-- FIXED TOP BAR -->
+  <header class="top-nav" id="top-nav">
+    <div class="nav-container">
+      <!-- Logo with Secret Moon Easter Egg Trigger -->
+      <a href="#hero" class="nav-brand" aria-label="Pip's Midnight Nursery, back to top">
+        <button type="button" class="secret-moon-btn" id="easter-egg-moon" aria-label="Sleepy crescent moon logo (click me!)" title="Pip's Sleepy Moon">
+          🌙
+        </button>
+        <div class="brand-text-wrap">
+          <span class="brand-title">Pip's Nursery</span>
+          <span class="brand-badge">Junior Dream Eng.</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#about" class="nav-link">About Pip</a>
+        <a href="#projects" class="nav-link">Dream Projects</a>
+        <a href="#guestbook" class="nav-link">Guestbook <span class="nav-bonus-badge">+2 pts</span></a>
+        <a href="story.html" class="nav-link story-nav-link" title="Watch Pip's Fullscreen Story Movie">Pip's Story <span class="nav-story-badge">Movie 🎬</span></a>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="nav-controls">
+        <!-- 90s Retro Chaos Mode Toggle (+5 pts) -->
+        <button id="chaos-toggle" class="control-btn chaos-btn" aria-label="Toggle retro chaos mode" title="Toggle 90s Retro Chaos Mode (+5 bonus pts)">
+          <span class="control-icon" id="chaos-icon">🌀</span>
+          <span class="control-label" id="chaos-label">Chaos Mode</span>
+        </button>
+
+        <!-- Day / Night Toggle Button -->
+        <button id="theme-toggle" class="control-btn" aria-label="Toggle night mode" title="Switch Day or Night theme">
+          <span class="control-icon" id="theme-icon">🌙</span>
+          <span class="control-label" id="theme-label">Night</span>
+        </button>
+
+        <!-- Sound / Mute Toggle Button -->
+        <button id="sound-toggle" class="control-btn" aria-label="Toggle sound and lullaby" title="Turn sound on or mute">
+          <span class="control-icon" id="sound-icon">🔊</span>
+          <span class="control-label" id="sound-label">Sound On</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ==============================================
+         HACKATHON LIVE BANNER & REAL-TIME COUNTDOWN
+         Official Brief: Closes 19 Oct 2026 @ 17:17 IST
+         ============================================== -->
+    <aside class="hackathon-status-bar" id="hackathon-status-bar" aria-label="Baby's First Website Hackathon Countdown">
+      <div class="hackathon-status-inner">
+        <div class="hackathon-meta-group">
+          <span class="live-pulse-dot" aria-hidden="true"></span>
+          <span class="hackathon-event-name"><strong>haX.baby</strong> · Baby's First Website</span>
+          <span class="hackathon-track-pill">Track 1 Entry</span>
+          <span class="hackathon-stat-badge" title="Official hackathon registration count">
+            👥 <strong>11,081</strong> builders registered
+          </span>
+        </div>
+
+        <div class="hackathon-countdown-group">
+          <span class="countdown-heading">⏳ Submission Window Closes In:</span>
+          <div class="countdown-timer" id="countdown-timer" aria-live="polite">
+            <div class="time-block"><span class="time-num" id="cd-days">00</span><span class="time-lbl">Days</span></div>
+            <span class="time-sep">:</span>
+            <div class="time-block"><span class="time-num" id="cd-hours">00</span><span class="time-lbl">Hours</span></div>
+            <span class="time-sep">:</span>
+            <div class="time-block"><span class="time-num" id="cd-mins">00</span><span class="time-lbl">Mins</span></div>
+            <span class="time-sep">:</span>
+            <div class="time-block"><span class="time-num" id="cd-secs">00</span><span class="time-lbl">Secs</span></div>
+          </div>
+          <span class="countdown-target">(19 Oct 2026 · 17:17 IST)</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Retro Chaos Marquee Ribbon (Activated in Chaos Mode) -->
+    <div class="chaos-marquee-strip" id="chaos-marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span>★ 90s CHAOS MODE ACTIVATED ★ BABY'S FIRST WEBSITE HACKATHON ★ 11,081 BUILDERS STRONG ★ ZERO DEPENDENCIES ★ BEST VIEWED AT 800x600 IN NETSCAPE NAVIGATOR ★ PIP SAYS: MAKE THE WEB A LITTLE MORE YOU! ★ CLICK CHAOS TO EXIT ★</span>
+        <span>★ 90s CHAOS MODE ACTIVATED ★ BABY'S FIRST WEBSITE HACKATHON ★ 11,081 BUILDERS STRONG ★ ZERO DEPENDENCIES ★ BEST VIEWED AT 800x600 IN NETSCAPE NAVIGATOR ★ PIP SAYS: MAKE THE WEB A LITTLE MORE YOU! ★ CLICK CHAOS TO EXIT ★</span>
+      </div>
+    </div>
+    <!-- ==============================================
+         1. HERO SECTION
+         ============================================== -->
+    <section class="section hero-section" id="hero" aria-labelledby="hero-title">
+      <div class="hero-container">
+        <!-- Pip Floating Cloud Avatar Container -->
+        <div class="hero-avatar-wrapper">
+          <div class="pip-hero-card" id="pip-hero-card" tabindex="0" role="button" aria-label="Pip on a cloud. Double click for a cute giggle!">
+            <div class="pip-glow-aura" aria-hidden="true"></div>
+            <!-- Main Hero Image -->
+            <img 
+              src="assets/pip_avatar_cloud.png" 
+              alt="Pip, the cute canon skull baby Junior Dream Engineer wearing a starry nightcap with pink bow, waving atop a fluffy cloud" 
+              class="pip-avatar-img" 
+              id="pip-avatar-img"
+              width="460"
+              height="460"
+            />
+            
+            <!-- Double-Click Confetti Hint Tooltip -->
+            <div class="pip-hint-badge" aria-hidden="true">✨ Double-click Pip for a giggle! ✨</div>
+          </div>
+        </div>
+
+        <!-- Hero Text & Narration -->
+        <div class="hero-text-content">
+          <div class="hero-eyebrow">
+            <span class="pill-tag">✨ Baby's First Website 2026 • Track 1</span>
+          </div>
+
+          <h1 class="hero-title" id="hero-title">
+            Pip
+            <span class="hero-subtitle">Junior Dream Engineer</span>
+          </h1>
+
+          <p class="hero-tagline">“I build the dreams you fall asleep inside.”</p>
+
+          <!-- Dynamic Speech Bubble (Changes with day/night mode) -->
+          <div class="speech-bubble" id="pip-speech-bubble" role="status" aria-live="polite">
+            <div class="speech-bubble-tail" aria-hidden="true"></div>
+            <p id="pip-speech-text">“Hello... I'm Pip. I make the dreams that help little creatures fall asleep.”</p>
+          </div>
+
+          <!-- Quick Navigation Link -->
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary skip-to-projects" id="skip-to-projects-btn">
+              <span>Skip to projects</span>
+              <span class="btn-arrow" aria-hidden="true">↓</span>
+            </a>
+            <a href="#about" class="btn btn-secondary">
+              <span>Meet Pip</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         2. ABOUT PIP SECTION
+         ============================================== -->
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="section-header">
+        <span class="section-badge">🌙 The Storyteller</span>
+        <h2 class="section-title" id="about-title">About Pip</h2>
+        <p class="section-subtitle">A peek inside the cozy cloud-nursery of our Junior Dream Engineer</p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Portrait on the Left -->
+        <div class="about-portrait-card">
+          <div class="portrait-frame">
+            <img 
+              src="assets/pip_portrait.png" 
+              alt="Official studio character portrait of Pip holding the glowing nightlight lantern and unicorn music box atop a cloud" 
+              class="pip-portrait-img" 
+              loading="lazy" 
+              width="360"
+              height="360"
+            />
+            <div class="portrait-glow" aria-hidden="true"></div>
+          </div>
+          <div class="portrait-caption">
+            <span class="caption-icon">⭐</span>
+            <span class="caption-text">Certified Dream Weaver • Midnight Nursery</span>
+          </div>
+        </div>
+
+        <!-- Bio on the Right (Strictly under 100 words) -->
+        <div class="about-bio-card">
+          <div class="bio-text-wrap">
+            <p class="bio-paragraph">
+              Hi! I’m Pip, your resident Junior Dream Engineer at the Midnight Nursery. 
+              I might be a tiny skull baby, but I have the biggest heart for bedtime! 
+              I'm curious, very sleepy, a bit clumsy, and I giggle whenever a star tickles my nose. 
+              I absolutely hate cold silence, so I fill the night with soft lullabies, 
+              honeyed nightlights, and soothing dreamscapes. Welcome to my cozy sky workshop!
+            </p>
+          </div>
+
+          <!-- Personality Chips with soft hover wiggle -->
+          <div class="personality-chips-header">
+            <span>Pip's Traits:</span>
+          </div>
+          <div class="personality-chips" role="list" aria-label="Pip's personality traits">
+            <div class="personality-chip" role="listitem" tabindex="0">
+              <span class="chip-emoji">🌙</span> Cute Skull Baby
+            </div>
+            <div class="personality-chip" role="listitem" tabindex="0">
+              <span class="chip-emoji">🔍</span> Curious Explorer
+            </div>
+            <div class="personality-chip" role="listitem" tabindex="0">
+              <span class="chip-emoji">😴</span> Chronic Yawner
+            </div>
+            <div class="personality-chip" role="listitem" tabindex="0">
+              <span class="chip-emoji">🧸</span> Lovably Clumsy
+            </div>
+            <div class="personality-chip" role="listitem" tabindex="0">
+              <span class="chip-emoji">✨</span> Giggles a Lot
+            </div>
+            <div class="personality-chip" role="listitem" tabindex="0">
+              <span class="chip-emoji">🎵</span> Hates Silence
+            </div>
+            <div class="personality-chip" role="listitem" tabindex="0">
+              <span class="chip-emoji">☁️</span> Dream Engineer
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pip's Nursery Wall Growth Chart (Canon Showcase Project 6) -->
+      <div class="growth-chart-card" id="growth-chart-card">
+        <div class="growth-card-header">
+          <span class="growth-badge">📏 Nursery Wall Record</span>
+          <h3 class="growth-title">Pip's Milestones Growth Chart</h3>
+          <p class="growth-subtitle">Interactive measurements tracking Pip's height and magical dream engineering skills!</p>
+        </div>
+
+        <div class="growth-ruler-container">
+          <div class="growth-ruler-track" role="list" aria-label="Pip's height milestones">
+            <!-- 12 in Milestone -->
+            <button type="button" class="growth-milestone-btn" data-inch="12" data-icon="☁️" data-title="Cloud Fluffing 101 (12 inches)" data-desc="Learned how to knead evening stratus clouds into ultra-soft sleeping cushions without falling through." aria-label="12 inches milestone: Cloud Fluffing 101">
+              <div class="milestone-notch">
+                <span class="notch-mark">12″</span>
+                <span class="notch-tick"></span>
+              </div>
+              <div class="milestone-content">
+                <span class="milestone-icon">☁️</span>
+                <div class="milestone-info">
+                  <strong class="milestone-title">Cloud Fluffing</strong>
+                  <span class="milestone-meta">12 inches • Level 1</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- 18 in Milestone -->
+            <button type="button" class="growth-milestone-btn" data-inch="18" data-icon="🎵" data-title="Lullaby Pitch Tuning (18 inches)" data-desc="Calibrated the pentatonic music box to soothe crying baby ghosts in under two minutes." aria-label="18 inches milestone: Lullaby Pitch Tuning">
+              <div class="milestone-notch">
+                <span class="notch-mark">18″</span>
+                <span class="notch-tick"></span>
+              </div>
+              <div class="milestone-content">
+                <span class="milestone-icon">🎵</span>
+                <div class="milestone-info">
+                  <strong class="milestone-title">Lullaby Tuning</strong>
+                  <span class="milestone-meta">18 inches • Level 2</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- 24 in Milestone -->
+            <button type="button" class="growth-milestone-btn" data-inch="24" data-icon="💡" data-title="Porcelain Glow Balancing (24 inches)" data-desc="Formulated the soft 2700K amber moon-glow that wards off scary shadows while keeping eyelids heavy." aria-label="24 inches milestone: Porcelain Glow Balancing">
+              <div class="milestone-notch">
+                <span class="notch-mark">24″</span>
+                <span class="notch-tick"></span>
+              </div>
+              <div class="milestone-content">
+                <span class="milestone-icon">💡</span>
+                <div class="milestone-info">
+                  <strong class="milestone-title">Glow Balancing</strong>
+                  <span class="milestone-meta">24 inches • Level 3</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- 30 in Milestone -->
+            <button type="button" class="growth-milestone-btn" data-inch="30" data-icon="⭐" data-title="Starlight Catching (30 inches)" data-desc="Mastered gently plucking drifting fallen stars from rooftops with a tiny fleece mitten." aria-label="30 inches milestone: Starlight Catching">
+              <div class="milestone-notch">
+                <span class="notch-mark">30″</span>
+                <span class="notch-tick"></span>
+              </div>
+              <div class="milestone-content">
+                <span class="milestone-icon">⭐</span>
+                <div class="milestone-info">
+                  <strong class="milestone-title">Starlight Catching</strong>
+                  <span class="milestone-meta">30 inches • Level 4</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- 36 in Milestone (Current Height) -->
+            <button type="button" class="growth-milestone-btn active" data-inch="36" data-icon="🚀" data-title="Rooftop Dream Carrier (Current: 36 inches)" data-desc="Pip is officially a certified Junior Dream Engineer! Piloting the cloud carrier across city chimneys nightly." aria-label="36 inches milestone: Rooftop Dream Carrier (Current)">
+              <div class="milestone-notch">
+                <span class="notch-mark current">36″</span>
+                <span class="notch-tick current"></span>
+              </div>
+              <div class="milestone-content current-content">
+                <span class="milestone-icon">🚀</span>
+                <div class="milestone-info">
+                  <strong class="milestone-title">Rooftop Carrier ⭐</strong>
+                  <span class="milestone-meta">36 inches • Current!</span>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Dynamic Milestone Detail Bubble -->
+          <div class="growth-detail-bubble" id="growth-detail-bubble" role="status" aria-live="polite">
+            <span class="detail-icon" id="growth-detail-icon">🚀</span>
+            <div class="detail-text-wrap">
+              <h4 id="growth-detail-title">Rooftop Dream Carrier (Current: 36 inches)</h4>
+              <p id="growth-detail-desc">Pip is officially a certified Junior Dream Engineer! Piloting the cloud carrier across city chimneys nightly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         3. PROJECTS SECTION (3 Required + 1 Bonus)
+         ============================================== -->
+    <section class="section projects-section" id="projects" aria-labelledby="projects-title">
+      <div class="section-header">
+        <span class="section-badge">✨ Celestial Workshop</span>
+        <h2 class="section-title" id="projects-title">Dream Projects</h2>
+        <p class="section-subtitle">Every invention is tested for maximum coziness and restful slumber</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- PROJECT A: The Lullaby Lab -->
+        <article class="project-card lullaby-card" id="project-lullaby">
+          <div class="project-card-header">
+            <span class="project-number">Project 01</span>
+            <h3 class="project-card-title">The Lullaby Lab</h3>
+            <p class="project-hint">Tap the music box to weave a soft pentatonic lullaby</p>
+          </div>
+
+          <!-- Lullaby Box Interactive Container -->
+          <div class="lullaby-interactive-box" id="lullaby-interactive-box" tabindex="0" role="button" aria-label="Tap to play or pause the soft generative lullaby">
+            <div class="lullaby-image-wrap">
+              <img 
+                src="assets/pip_lullaby_box.png" 
+                alt="Pip's pastel lullaby music box featuring a miniature pastel unicorn on top, golden notes, and wind-up key" 
+                class="lullaby-box-img" 
+                loading="lazy" 
+                width="340"
+                height="340"
+              />
+              <div class="lullaby-pulse-ring" id="lullaby-pulse-ring" aria-hidden="true"></div>
+            </div>
+            <!-- Floating Music Notes Container -->
+            <div class="music-notes-container" id="music-notes-container" aria-hidden="true"></div>
+          </div>
+
+          <!-- Controls Bar -->
+          <div class="lullaby-controls">
+            <button id="lullaby-toggle-btn" class="btn btn-primary lullaby-btn" aria-label="Play lullaby">
+              <span class="btn-icon" id="lullaby-btn-icon">▶</span>
+              <span id="lullaby-btn-text">Play Lullaby</span>
+            </button>
+
+            <!-- Volume Slider -->
+            <div class="volume-slider-wrap">
+              <label for="lullaby-volume-slider" class="volume-label">
+                <span>Volume</span>
+                <span id="lullaby-volume-display">70%</span>
+              </label>
+              <input 
+                type="range" 
+                id="lullaby-volume-slider" 
+                class="custom-slider" 
+                min="0" 
+                max="1" 
+                step="0.05" 
+                value="0.7" 
+                aria-label="Lullaby volume slider" 
+              />
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT B: Nightlight Collection -->
+        <article class="project-card nightlight-card" id="project-nightlights">
+          <div class="project-card-header">
+            <span class="project-number">Project 02</span>
+            <h3 class="project-card-title">Nightlight Collection</h3>
+            <p class="project-hint">Click any lantern card to inspect its comforting dream glow</p>
+          </div>
+
+          <!-- 4 Lantern Variations -->
+          <div class="lanterns-grid" role="list" aria-label="Four nightlight lantern color variants">
+            <!-- Lantern 1: Honey Constellation -->
+            <button 
+              type="button" 
+              class="lantern-item-btn lantern-honey" 
+              data-name="Honey Constellation" 
+              data-desc="Brimming with sweet stardust warmth, this golden lantern keeps nighttime shadows soft and friendly with pure honeyed tranquility."
+              data-mood="Warm Golden Amber • Comforting & Safe"
+              data-filter="honey"
+              aria-label="Inspect Honey Constellation lantern"
+            >
+              <div class="lantern-img-frame">
+                <img 
+                  src="assets/pip_dream_lantern.png" 
+                  alt="Honey Constellation glowing bedside nightlight lantern" 
+                  class="lantern-preview-img filter-honey" 
+                  loading="lazy" 
+                  width="180" 
+                  height="180" 
+                />
+              </div>
+              <span class="lantern-name">Honey Constellation</span>
+            </button>
+
+            <!-- Lantern 2: Lavender Slumber -->
+            <button 
+              type="button" 
+              class="lantern-item-btn lantern-lavender" 
+              data-name="Lavender Slumber" 
+              data-desc="Infused with twilight lavender petals and velvet night mist. Scientifically formulated by Pip for deep, peaceful REM dream cycles."
+              data-mood="Twilight Violet • Deep Sleep & Tranquil Rest"
+              data-filter="lavender"
+              aria-label="Inspect Lavender Slumber lantern"
+            >
+              <div class="lantern-img-frame">
+                <img 
+                  src="assets/pip_dream_lantern.png" 
+                  alt="Lavender Slumber glowing bedside nightlight lantern" 
+                  class="lantern-preview-img filter-lavender" 
+                  loading="lazy" 
+                  width="180" 
+                  height="180" 
+                />
+              </div>
+              <span class="lantern-name">Lavender Slumber</span>
+            </button>
+
+            <!-- Lantern 3: Mint Stardust -->
+            <button 
+              type="button" 
+              class="lantern-item-btn lantern-mint" 
+              data-name="Mint Stardust" 
+              data-desc="Gently cooling aurora starlight that eases restless minds, quietens spinning bedtime thoughts, and cools warm foreheads."
+              data-mood="Calming Aurora Mint • Eases Busy Minds"
+              data-filter="mint"
+              aria-label="Inspect Mint Stardust lantern"
+            >
+              <div class="lantern-img-frame">
+                <img 
+                  src="assets/pip_dream_lantern.png" 
+                  alt="Mint Stardust glowing bedside nightlight lantern" 
+                  class="lantern-preview-img filter-mint" 
+                  loading="lazy" 
+                  width="180" 
+                  height="180" 
+                />
+              </div>
+              <span class="lantern-name">Mint Stardust</span>
+            </button>
+
+            <!-- Lantern 4: Berry Sunset -->
+            <button 
+              type="button" 
+              class="lantern-item-btn lantern-berry" 
+              data-name="Berry Sunset" 
+              data-desc="A soothing dusk glow reminiscent of raspberry twilight skies, wrapping bedtime creatures in a warm, protective bedtime hug."
+              data-mood="Raspberry Twilight • Cozy Protective Aura"
+              data-filter="berry"
+              aria-label="Inspect Berry Sunset lantern"
+            >
+              <div class="lantern-img-frame">
+                <img 
+                  src="assets/pip_dream_lantern.png" 
+                  alt="Berry Sunset glowing bedside nightlight lantern" 
+                  class="lantern-preview-img filter-berry" 
+                  loading="lazy" 
+                  width="180" 
+                  height="180" 
+                />
+              </div>
+              <span class="lantern-name">Berry Sunset</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- PROJECT C: Dream Delivery Routes -->
+        <article class="project-card routes-card" id="project-routes">
+          <div class="project-card-header">
+            <span class="project-number">Project 03</span>
+            <h3 class="project-card-title">Dream Delivery Routes</h3>
+            <p class="project-hint">Watch Pip pilot a soft cloud across starry rooftops to tuck in the city</p>
+          </div>
+
+          <!-- Illustrated Rooftop SVG Map -->
+          <div class="rooftop-map-container" id="rooftop-map-container">
+            <svg 
+              class="rooftop-svg" 
+              viewBox="0 0 600 320" 
+              preserveAspectRatio="xMidYMid meet" 
+              aria-label="Illustrated nighttime rooftop map showing Pip's cloud flight route" 
+              role="img"
+            >
+              <defs>
+                <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#181534" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#2d224d" stop-opacity="0.9" />
+                </linearGradient>
+
+                <linearGradient id="cloudGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ffeaa7" />
+                  <stop offset="100%" stop-color="#f8b8cc" />
+                </linearGradient>
+
+                <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Starry Map Sky -->
+              <rect width="600" height="320" rx="20" fill="url(#skyGrad)" class="svg-sky-bg" />
+
+              <!-- Distant Stars & Constellations -->
+              <g class="svg-stars" fill="#ffffff" opacity="0.7">
+                <circle cx="60" cy="50" r="2" />
+                <circle cx="120" cy="30" r="1.5" />
+                <circle cx="210" cy="65" r="2.5" />
+                <circle cx="290" cy="35" r="1.5" />
+                <circle cx="390" cy="55" r="2" />
+                <circle cx="480" cy="25" r="2.5" />
+                <circle cx="550" cy="70" r="1.5" />
+                <circle cx="170" cy="95" r="1.5" />
+                <circle cx="440" cy="100" r="2" />
+              </g>
+
+              <!-- Moon in SVG -->
+              <path d="M 520 40 A 22 22 0 1 1 506 68 A 18 18 0 0 0 520 40 Z" fill="#ffeaa7" filter="url(#glowFilter)" opacity="0.9" />
+
+              <!-- Rooftops Silhouette -->
+              <!-- House 1 -->
+              <polygon points="30,320 30,220 85,170 140,220 140,320" fill="#201b3b" />
+              <rect x="70" y="230" width="30" height="40" rx="6" fill="#ffeaa7" opacity="0.75" class="cozy-window" />
+              <!-- Chimney 1 -->
+              <rect x="110" y="180" width="16" height="30" fill="#18132f" />
+              <circle cx="118" cy="170" r="5" fill="#fbf4e8" opacity="0.3" class="chimney-puff" />
+
+              <!-- House 2 (Tall apartment) -->
+              <polygon points="150,320 150,190 220,130 290,190 290,320" fill="#282247" />
+              <rect x="175" y="195" width="24" height="30" rx="4" fill="#ffd166" opacity="0.8" class="cozy-window" />
+              <rect x="235" y="195" width="24" height="30" rx="4" fill="#ffd166" opacity="0.8" class="cozy-window" />
+              <rect x="205" y="250" width="30" height="36" rx="4" fill="#ffd166" opacity="0.6" class="cozy-window" />
+
+              <!-- House 3 (Cottage) -->
+              <polygon points="300,320 300,230 365,175 430,230 430,320" fill="#1c1735" />
+              <rect x="350" y="235" width="28" height="34" rx="5" fill="#ffeaa7" opacity="0.8" class="cozy-window" />
+              <rect x="395" y="190" width="14" height="26" fill="#140f28" />
+
+              <!-- House 4 -->
+              <polygon points="440,320 440,200 515,145 580,200 580,320" fill="#241e42" />
+              <rect x="495" y="210" width="32" height="40" rx="6" fill="#ffd166" opacity="0.85" class="cozy-window" />
+
+              <!-- Glowing Dashed Delivery Path -->
+              <path 
+                id="dream-flight-path" 
+                class="dream-flight-path" 
+                d="M 50 120 C 130 40, 200 170, 290 90 C 370 20, 440 180, 530 110" 
+                fill="none" 
+                stroke="url(#cloudGlow)" 
+                stroke-width="4" 
+                stroke-dasharray="8 8" 
+                stroke-linecap="round"
+                filter="url(#glowFilter)"
+              />
+
+              <!-- Waypoint Stations -->
+              <g class="route-stations" fill="#ffffff">
+                <!-- Station 1 -->
+                <circle cx="50" cy="120" r="7" fill="#f8b8cc" />
+                <circle cx="50" cy="120" r="3" fill="#ffffff" />
+                <text x="50" y="145" text-anchor="middle" font-size="11" fill="#ffeaa7" font-family="'Fredoka', sans-serif">Star Depot</text>
+
+                <!-- Station 2 -->
+                <circle cx="290" cy="90" r="7" fill="#ffe082" />
+                <circle cx="290" cy="90" r="3" fill="#ffffff" />
+                <text x="290" y="115" text-anchor="middle" font-size="11" fill="#ffeaa7" font-family="'Fredoka', sans-serif">Teddy Tower</text>
+
+                <!-- Station 3 -->
+                <circle cx="530" cy="110" r="7" fill="#b9a5d6" />
+                <circle cx="530" cy="110" r="3" fill="#ffffff" />
+                <text x="530" y="135" text-anchor="middle" font-size="11" fill="#ffeaa7" font-family="'Fredoka', sans-serif">Cradle Haven</text>
+              </g>
+
+              <!-- Animated Pip Cloud Marker Carrier -->
+              <g id="pip-cloud-carrier" class="pip-cloud-carrier" transform="translate(50, 120)">
+                <!-- Little dream cloud -->
+                <ellipse cx="0" cy="0" rx="20" ry="12" fill="#ffffff" filter="url(#glowFilter)" />
+                <circle cx="-9" cy="-5" r="9" fill="#ffffff" />
+                <circle cx="7" cy="-7" r="11" fill="#ffffff" />
+                <!-- Mini Pip Chibi Head -->
+                <circle cx="0" cy="-14" r="9" fill="#fffdfa" />
+                <circle cx="-3" cy="-14" r="2" fill="#44334a" />
+                <circle cx="3" cy="-14" r="2" fill="#44334a" />
+                <!-- Mini Pajama Cap -->
+                <path d="M -7 -18 Q 0 -26 12 -20 Q 3 -16 -7 -18 Z" fill="#b9a5d6" />
+                <!-- Sparkling Delivery Dream Spark -->
+                <circle cx="0" cy="2" r="3" fill="#ffd166" class="carrier-spark" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Delivery Controls & Status -->
+          <div class="routes-actions-bar">
+            <button id="deliver-dream-btn" class="btn btn-primary deliver-btn" aria-label="Dispatch Pip along the dream route">
+              <span class="btn-icon">🚀</span>
+              <span id="deliver-btn-label">Deliver a Dream!</span>
+            </button>
+            <div class="delivery-status-pill" role="status">
+              <span class="status-dot"></span>
+              <span id="delivery-status-text">Ready for nightly flight</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT D (BONUS): Rattle & Block Toys -->
+        <article class="project-card toys-card" id="project-toys">
+          <div class="project-card-header">
+            <span class="project-number">Project 04 • Bonus</span>
+            <h3 class="project-card-title">Rattle & Block Toys</h3>
+            <p class="project-hint">Shake the celestial rattle and tap blocks to stack them</p>
+          </div>
+
+          <div class="toys-workbench">
+            <!-- Celestial Rattle Toy -->
+            <div class="toy-panel rattle-panel">
+              <span class="toy-badge">Interactive Toy 1</span>
+              <button type="button" id="celestial-rattle" class="rattle-toy-btn" aria-label="Shake Pip's celestial star rattle">
+                <div class="rattle-illustration-wrap" id="rattle-visual-wrap">
+                  <div class="rattle-ring">
+                    <span class="rattle-star">⭐</span>
+                  </div>
+                  <div class="rattle-handle"></div>
+                </div>
+                <div class="toy-meta">
+                  <strong class="toy-title">Starlight Rattle</strong>
+                  <span class="toy-action-cue">Tap to shake & clatter!</span>
+                </div>
+              </button>
+            </div>
+
+            <!-- 3 Stackable Dream Blocks -->
+            <div class="toy-panel blocks-panel">
+              <span class="toy-badge">Interactive Toy 2</span>
+              <div class="blocks-stack-stage" id="blocks-stage" role="region" aria-label="Stackable blocks play stage">
+                <!-- Block 3 (Top) -->
+                <button type="button" class="dream-block block-top" id="block-3" data-block-id="3" aria-label="Block P, tap to move">
+                  <span class="block-letter">P</span>
+                  <span class="block-icon">🌙</span>
+                </button>
+                <!-- Block 2 (Middle) -->
+                <button type="button" class="dream-block block-mid" id="block-2" data-block-id="2" aria-label="Block I, tap to move">
+                  <span class="block-letter">I</span>
+                  <span class="block-icon">⭐</span>
+                </button>
+                <!-- Block 1 (Base) -->
+                <button type="button" class="dream-block block-base" id="block-1" data-block-id="1" aria-label="Block P, tap to move">
+                  <span class="block-letter">P</span>
+                  <span class="block-icon">☁️</span>
+                </button>
+              </div>
+              <div class="blocks-footer-info">
+                <span id="blocks-status-text">Click blocks to stack or unstack!</span>
+                <button type="button" id="reset-blocks-btn" class="text-link-btn" aria-label="Restack blocks into a tower">Restack All</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         4. PIP'S STORY: CINEMATIC BEDTIME TALE
+         ============================================== -->
+    <section class="section story-section" id="story" aria-labelledby="story-title">
+      <div class="section-header">
+        <span class="section-badge">⭐ Immersive Bedtime Tale</span>
+        <h2 class="section-title" id="story-title">Pip: A Sleepy Nursery Tale</h2>
+        <p class="section-subtitle">Scroll down as the gentle nursery tale unfolds among the stars</p>
+      </div>
+
+      <!-- Dedicated Cinema Experience Callout Banner -->
+      <div class="story-cinema-banner">
+        <div class="cinema-banner-content">
+          <div class="cinema-badge">🎬 Interactive Bedtime Short Film</div>
+          <h3 class="cinema-title">Experience the Fullscreen Animated Story</h3>
+          <p class="cinema-desc">
+            Enjoy a gentle scroll-driven cinematic journey with waking character animations, 
+            shooting star trails, floating nursery spires, generative bedtime lullaby audio, and parallax starlight.
+          </p>
+          <div class="cinema-cta-wrap">
+            <a href="story.html" class="btn btn-primary cinema-launch-btn">
+              <span class="btn-icon">🚀</span>
+              <span>Launch Fullscreen Story Movie</span>
+            </a>
+          </div>
+        </div>
+        <div class="cinema-illustration-preview">
+          <img 
+            src="assets/pip_avatar_cloud.png" 
+            alt="Pip floating peacefully on a cloud waving" 
+            class="cinema-preview-img"
+            width="220"
+            height="260"
+          />
+        </div>
+      </div>
+
+      <!-- In-Page Scroll Story Timeline (4 Detailed Chapters) -->
+      <div class="story-timeline" id="story-timeline">
+        <!-- Chapter 1 -->
+        <article class="story-scene" data-scene="1">
+          <div class="scene-visual-frame">
+            <div class="scene-icon-wrap icon-starfall">
+              <span class="scene-emoji">⭐</span>
+              <span class="scene-cloud-deco deco-1">☁️</span>
+            </div>
+          </div>
+          <div class="scene-card">
+            <span class="scene-counter">Chapter One • Awakening</span>
+            <p class="scene-quote">
+              “One quiet night, a little star fell into a soft cloud... and Pip woke up.”
+            </p>
+            <p class="scene-narrative-sub">
+              Rubbing his sleepy eyes under the velvety moonlight, Pip looked around in wide-eyed wonder. 
+              The falling star left a warm golden glow across his sleepy cloud.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="story-scene" data-scene="2">
+          <div class="scene-visual-frame">
+            <div class="scene-icon-wrap icon-nursery">
+              <span class="scene-emoji">🏰</span>
+              <span class="scene-cloud-deco deco-2">☁️</span>
+            </div>
+          </div>
+          <div class="scene-card">
+            <span class="scene-counter">Chapter Two • The Sanctuary</span>
+            <p class="scene-quote">
+              “Pip discovered a hidden nursery floating above the city, where dreams are made.”
+            </p>
+            <p class="scene-narrative-sub">
+              Far above the twinkling city skyline, a majestic cloud sanctuary appeared with glowing porcelain windows, 
+              where sleepy creatures yawned and waited for sweet bedtime dreams.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="story-scene" data-scene="3">
+          <div class="scene-visual-frame">
+            <div class="scene-icon-wrap icon-crafting">
+              <span class="scene-emoji">🎶</span>
+              <span class="scene-cloud-deco deco-3">✨</span>
+            </div>
+          </div>
+          <div class="scene-card">
+            <span class="scene-counter">Chapter Three • Dream Crafting</span>
+            <p class="scene-quote">
+              “Now Pip designs lullabies, nightlights, and bedtime stories for every little creature.”
+            </p>
+            <p class="scene-narrative-sub">
+              With tiny hands and a caring heart, Pip crafts comforting pentatonic melodies, gentle glowing porcelain lanterns, 
+              and magical bedtime storybooks watched over by adoring bunny and owl friends.
+            </p>
+          </div>
+        </article>
+
+        <!-- Chapter 4 -->
+        <article class="story-scene" data-scene="4">
+          <div class="scene-visual-frame">
+            <div class="scene-icon-wrap icon-heart">
+              <span class="scene-emoji">💖</span>
+              <span class="scene-cloud-deco deco-4">🌙</span>
+            </div>
+          </div>
+          <div class="scene-card highlight-scene">
+            <span class="scene-counter">Chapter Four • Sweet Dreams</span>
+            <p class="scene-quote">
+              “Pip's biggest dream? To make sure no one falls asleep scared.”
+            </p>
+            <div class="scene-finale-box">
+              <strong class="scene-sweet-dreams">Sweet dreams… from Pip 💖🌙</strong>
+              <p class="scene-sweet-sub">Floating high above, tucking every soul in with cozy starlight.</p>
+              <div class="scene-finale-actions">
+                <a href="story.html" class="btn btn-secondary btn-sm">
+                  <span>Open Fullscreen Story Mode 🎬</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         5. LIVE GUESTBOOK (Side Quest Bonus: +2 Pts)
+         ============================================== -->
+    <section class="section guestbook-section" id="guestbook" aria-labelledby="guestbook-title">
+      <div class="section-header">
+        <span class="section-badge">⭐ Bonus Quest +2 Pts • Early-Web Wall</span>
+        <h2 class="section-title" id="guestbook-title">Pip's Starlight Guestbook</h2>
+        <p class="section-subtitle">Leave your friendly mark, tuck in a bedtime wish, and sign Pip's nursery wall!</p>
+      </div>
+
+      <div class="guestbook-container">
+        <!-- Guestbook Sign Form -->
+        <div class="guestbook-form-card">
+          <div class="card-header-cozy">
+            <span class="cozy-icon">✍️</span>
+            <div>
+              <h3 class="form-card-title">Sign the Guestbook</h3>
+              <p class="form-card-subtitle">Every message is tucked safely into Pip's starlight ledger</p>
+            </div>
+          </div>
+
+          <form id="guestbook-form" class="guestbook-form" novalidate>
+            <div class="form-group">
+              <label for="gb-name" class="form-label">Your Name / Builder Handle <span class="required">*</span></label>
+              <input 
+                type="text" 
+                id="gb-name" 
+                class="form-input" 
+                placeholder="e.g. Bunny Builder, Astro Baby, Guest #11081" 
+                maxlength="32" 
+                required 
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="gb-message" class="form-label">Bedtime Wish / Note for Pip <span class="required">*</span></label>
+              <textarea 
+                id="gb-message" 
+                class="form-textarea" 
+                rows="3" 
+                placeholder="Leave a sweet bedtime thought, retro quote, or cheer for fellow builders..." 
+                maxlength="160" 
+                required
+              ></textarea>
+              <div class="form-char-count"><span id="gb-char-left">160</span> characters remaining</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Choose Your Bedtime Sticker</label>
+              <div class="sticker-selector" role="radiogroup" aria-label="Select sticker for your guestbook entry">
+                <label class="sticker-chip active">
+                  <input type="radio" name="gb-sticker" value="🌙" checked />
+                  <span class="sticker-emoji">🌙</span>
+                  <span class="sticker-name">Moon</span>
+                </label>
+                <label class="sticker-chip">
+                  <input type="radio" name="gb-sticker" value="⭐" />
+                  <span class="sticker-emoji">⭐</span>
+                  <span class="sticker-name">Star</span>
+                </label>
+                <label class="sticker-chip">
+                  <input type="radio" name="gb-sticker" value="🧸" />
+                  <span class="sticker-emoji">🧸</span>
+                  <span class="sticker-name">Teddy</span>
+                </label>
+                <label class="sticker-chip">
+                  <input type="radio" name="gb-sticker" value="🍼" />
+                  <span class="sticker-emoji">🍼</span>
+                  <span class="sticker-name">Bottle</span>
+                </label>
+                <label class="sticker-chip">
+                  <input type="radio" name="gb-sticker" value="☁️" />
+                  <span class="sticker-emoji">☁️</span>
+                  <span class="sticker-name">Cloud</span>
+                </label>
+                <label class="sticker-chip">
+                  <input type="radio" name="gb-sticker" value="🎀" />
+                  <span class="sticker-emoji">🎀</span>
+                  <span class="sticker-name">Ribbon</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary gb-submit-btn" id="gb-submit-btn">
+              <span class="btn-icon">✨</span>
+              <span>Sign Pip's Guestbook</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Live Wall Display -->
+        <div class="guestbook-wall-wrapper">
+          <div class="wall-header-bar">
+            <div class="wall-title-wrap">
+              <span class="wall-pulse-icon">📜</span>
+              <h3 class="wall-title">Starlight Signatures (<span id="gb-count">0</span>)</h3>
+            </div>
+            <button type="button" class="btn-clear-gb" id="btn-seed-gb" title="Restore sample community signatures">
+              <span>↻ Reset Samples</span>
+            </button>
+          </div>
+
+          <div class="guestbook-wall-feed" id="guestbook-feed" role="feed" aria-label="Visitor signatures">
+            <!-- Dynamically populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==============================================
+       NIGHTLIGHT DETAILS MODAL
+       ============================================== -->
+  <div class="modal-backdrop" id="lantern-modal" role="dialog" aria-modal="true" aria-labelledby="modal-lantern-title" hidden>
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close lantern details modal">✕</button>
+      
+      <div class="modal-body">
+        <div class="modal-image-container">
+          <img 
+            src="assets/pip_dream_lantern.png" 
+            alt="Expanded view of selected dream lantern" 
+            id="modal-lantern-img" 
+            class="modal-lantern-img" 
+          />
+          <div class="modal-glow-layer" id="modal-glow-layer" aria-hidden="true"></div>
+        </div>
+
+        <div class="modal-info">
+          <span class="modal-tag" id="modal-lantern-mood">Mood Aura</span>
+          <h3 class="modal-title" id="modal-lantern-title">Lantern Name</h3>
+          <p class="modal-description" id="modal-lantern-desc">Lantern description text goes here.</p>
+          
+          <div class="modal-features">
+            <div class="feature-chip">✨ Warm Bedtime Glow</div>
+            <div class="feature-chip">🛡️ Monster-Repellent Core</div>
+            <div class="feature-chip">💤 Pure Cozy Dreams</div>
+          </div>
+
+          <button type="button" class="btn btn-primary modal-action-btn" id="modal-select-btn">
+            Tuck me in with this light 🌙
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       SECRET EASTER EGG POPUP (Typed "dream")
+       ============================================== -->
+  <div class="modal-backdrop secret-modal" id="secret-word-modal" role="dialog" aria-modal="true" aria-labelledby="secret-modal-title" hidden>
+    <div class="modal-card secret-card">
+      <button type="button" class="modal-close-btn" id="secret-close-btn" aria-label="Close secret dream window">✕</button>
+      <div class="secret-content">
+        <div class="secret-icon">✨🌙✨</div>
+        <h3 class="secret-title" id="secret-modal-title">You Discovered the Secret Word!</h3>
+        <p class="secret-text">
+          Pip just packaged a special VIP celestial dream crate for you! 
+          It contains warm cinnamon milkclouds, flying butterfly stars, 
+          and zero bad dreams forever.
+        </p>
+        <span class="secret-badge">⭐ Secret Easter Egg Unlocked ⭐</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Popup -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite"></div>
+
+  <!-- ==============================================
+       7. FOOTER
+       ============================================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">☁️ Pip's Midnight Nursery</span>
+          <p class="footer-tagline">Track 1 • Baby's First Website 2026</p>
+        </div>
+
+        <!-- Vintage Hit Counter Odometer (Side Quest Bonus: +1 Pt) -->
+        <div class="vintage-odometer-box" id="vintage-odometer-box" aria-label="Vintage visitor hit counter odometer">
+          <div class="odometer-header">
+            <span class="odometer-blip" aria-hidden="true">●</span>
+            <span class="odometer-title">VINTAGE VISITOR ODOMETER</span>
+            <span class="odometer-badge">haX · 2026</span>
+          </div>
+          <div class="odometer-display" id="odometer-display" title="Vintage visitor mechanical tumbler">
+            <div class="odometer-wheel"><span class="odometer-digit" id="odo-d5">0</span></div>
+            <div class="odometer-wheel"><span class="odometer-digit" id="odo-d4">1</span></div>
+            <div class="odometer-wheel"><span class="odometer-digit" id="odo-d3">1</span></div>
+            <div class="odometer-wheel"><span class="odometer-digit" id="odo-d2">0</span></div>
+            <div class="odometer-wheel"><span class="odometer-digit" id="odo-d1">8</span></div>
+            <div class="odometer-wheel active-last"><span class="odometer-digit" id="odo-d0">2</span></div>
+          </div>
+          <div class="odometer-sub">
+            <span>You are visitor <strong id="odo-human-count">#11,082</strong></span>
+            <button type="button" id="btn-test-visit" class="odo-click-test" title="Increment visitor counter with mechanical click">
+              [+1 Click]
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 90s Early-Web 88x31 Badges & Official Partner Credits -->
+      <div class="footer-retro-badges" aria-label="Vintage early-web badges">
+        <div class="retro-badge badge-netscape">
+          <span class="badge-icon">🌐</span>
+          <span class="badge-text">NETSCAPE 4.0<br/><strong>OPTIMIZED</strong></span>
+        </div>
+        <div class="retro-badge badge-resolution">
+          <span class="badge-icon">🖥️</span>
+          <span class="badge-text">BEST AT<br/><strong>800 × 600</strong></span>
+        </div>
+        <div class="retro-badge badge-html">
+          <span class="badge-icon">✨</span>
+          <span class="badge-text">100% PURE<br/><strong>VANILLA WEB</strong></span>
+        </div>
+        <div class="retro-badge badge-hax">
+          <span class="badge-icon">🧸</span>
+          <span class="badge-text">haX.baby<br/><strong>NO. 001 HACK</strong></span>
+        </div>
+      </div>
+
+      <div class="footer-partner-credits">
+        <p class="partner-line">
+          Official Media Partner: <a href="https://eventopia.in/" target="_blank" rel="noopener noreferrer" class="partner-link"><strong>Eventopia</strong></a> 
+          • Event Partner: <a href="https://chat.whatsapp.com/H2UVbKdM1WAC2htDfzO6H1" target="_blank" rel="noopener noreferrer" class="partner-link"><strong>The Code Vibes</strong></a>
+          • Organizer: <a href="https://hax.baby/" target="_blank" rel="noopener noreferrer" class="partner-link"><strong>haX.baby</strong></a>
+        </p>
+      </div>
+
+      <div class="footer-credits">
+        <p>Official assets from <strong>haX.baby</strong> • Typography: <strong>Fredoka</strong> & <strong>Nunito</strong> (Google Fonts)</p>
+        <p>Made with love during <em>Baby's First Website 2026</em></p>
+        <div class="secret-hint-pill">✨ Psst... Pip’s favorite 5-letter bedtime word unlocks a secret celestial crate! (Try typing it)</div>
+      </div>
+
+      <div class="footer-bottom">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link-btn">
+          <span class="gh-icon">🐙</span>
+          <span>View on GitHub</span>
+        </a>
+        <a href="#hero" class="back-to-top-btn" id="back-to-top-btn" aria-label="Scroll back to top">
+          <span>Back to Top</span>
+          <span>↑</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1092,8 +1092,10 @@
     if (cdSecs) cdSecs.textContent = String(secs).padStart(2, '0');
   }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  if (cdDays) {
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
 
   /* ==========================================================================
      15. 90s RETRO CHAOS MODE TOGGLE (+5 pts Bonus)
